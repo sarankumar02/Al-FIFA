@@ -11,27 +11,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  Timer? _timer;
   @override
   void initState() {
-    Timer(
-        Duration(milliseconds: 1600),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => ScreenDecider())));
+   _timer =  Timer(
+        Duration(seconds: 5),
+        () => Navigator.pushReplacementNamed(context, "/loginPage")
+    );
     // TODO: implement initState
     super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _timer!.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Image.asset("assets/images/splash.png"),
-          ),
-          Text("SPLASH SCREEN")
-        ],
+      body: Center(
+        child: Image.asset("assets/Logos/Alfifa logo.png",
+        width: 200,
+        height: 200,),
       ),
     );
   }

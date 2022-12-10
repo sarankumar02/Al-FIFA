@@ -2,6 +2,7 @@ import 'package:al_fifa/app_localization.dart';
 import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/screens/login_screen.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
+import 'package:al_fifa/utils/pageRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +56,8 @@ class _MyWidgetState extends State<MyWidget> {
             locale: snapshot.data,
             debugShowCheckedModeBanner: false,
             title: 'Al Fifa',
-            home: SplashScreen(),
+            onGenerateRoute: FifaRouter.generateRoute,
+            initialRoute: "/",
           );
         });
   }

@@ -8,6 +8,7 @@ class SettingsBloc {
   SettingsBloc() {
     _initializeLanguage();
   }
+
   Stream<Locale> get language => _language.stream;
   _initializeLanguage() async {
     String lang = await _getSavedLanguage();
