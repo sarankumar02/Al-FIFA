@@ -122,14 +122,16 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: ElevatedButton(
         child: Text("Login"),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, "/homePage");
+        },
         style: ElevatedButton.styleFrom(
             primary: AppColor.secondaryColor,
             onPrimary: Colors.white,
             shadowColor: Colors.black,
             elevation: 5,
             padding: EdgeInsets.only(
-                left: 30.0, right: 30.0, top: 10.0, bottom: 10.0),
+                left: 30.0, right: 30.0, top: 15.0, bottom: 15.0),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0)))),
       ),
@@ -156,6 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  // viii - social login
   Widget socialLogin(){
     return Container(
       child: Column(
@@ -168,9 +171,15 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/Icons/facebook.png", width: 50,height: 50,),
+                GestureDetector(
+                  onTap: (){},
+                  child: Image.asset("assets/Icons/facebook.png", width: 50,height: 50,),
+                ),
                 SizedBox(width: 10,),
-                Image.asset("assets/Icons/google plus.png", width: 50,height: 50,),
+                GestureDetector(
+                  onTap: (){},
+                  child: Image.asset("assets/Icons/google plus.png", width: 50,height: 50,),
+                )
 
 
               ],

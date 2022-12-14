@@ -8,11 +8,13 @@ enum Languages { English, Arabic }
 //Page Router
  const String splashScreen = '/';
  const String loginScreen = '/loginPage';
+const String homeScreen = '/homePage';
 
 
  class AppColor{
    static const primaryColor = Color(0xff8046aa);
    static const secondaryColor = Color(0xff9fb0c8);
+   static const blackColor = Colors.black;
 
  }
 

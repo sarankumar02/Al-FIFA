@@ -1,3 +1,4 @@
+import 'package:al_fifa/screens/homeScreen.dart';
 import 'package:al_fifa/screens/login_screen.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
 import 'package:al_fifa/utils/constants.dart';
@@ -10,6 +11,8 @@ class FifaRouter {
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case loginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return  MaterialPageRoute(
             builder: (_) => Scaffold(
