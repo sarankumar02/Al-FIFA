@@ -90,7 +90,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-    - assets/svgs/
+    - assets/Icons/
+    - assets/Logos/
     - assets/languages/en.json
     - assets/languages/ar.json
 
