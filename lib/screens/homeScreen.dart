@@ -1,3 +1,4 @@
+import 'package:al_fifa/screens/homePage.dart';
 import 'package:al_fifa/screens/screenOne.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int pageIndex = 0;
 
   final pages = [
-    ScreenOne(
-      text: "Home",
-    ),
+    HomePage(),
     ScreenOne(
       text: "My Request",
     ),

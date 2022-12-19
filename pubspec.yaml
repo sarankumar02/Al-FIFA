@@ -89,7 +89,8 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/images/
+    - assets/illustrations/
+    - assets/Images/
     - assets/Icons/
     - assets/Logos/
     - assets/languages/en.json
