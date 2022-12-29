@@ -1,4 +1,5 @@
 import 'package:al_fifa/screens/homePage.dart';
+
 import 'package:al_fifa/screens/screenOne.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   int pageIndex = 0;
 
   final pages = [
@@ -21,9 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
     ScreenOne(
       text: "Visa Requirement",
     ),
-    ScreenOne(
-      text: "Menu",
-    ),
+    //drawer()
+    // MenuScreen()
   ];
 
   @override
@@ -141,16 +142,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                pageIndex == 2 ?  Image.asset(
-                  "assets/Icons/requirments purple.png",
-                  width: 25,
-                  height: 25,
-                )
+                pageIndex == 2
+                    ? Image.asset(
+                        "assets/Icons/requirments purple.png",
+                        width: 25,
+                        height: 25,
+                      )
                     : Image.asset(
-                  "assets/Icons/requirments.png",
-                  width: 25,
-                  height: 25,
-                ),
+                        "assets/Icons/requirments.png",
+                        width: 25,
+                        height: 25,
+                      ),
                 // SizedBox(height: 10,),
                 Text("Visa Requirement",
                     style: TextStyle(
@@ -172,7 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
           GestureDetector(
             onTap: () {
               setState(() {
-                pageIndex = 3;
+                // pageIndex = 3;
+                _showModelBottomSheet();
               });
             },
             child: Column(
@@ -181,15 +184,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                pageIndex == 3 ? Image.asset(
-                  "assets/Icons/3 dots purple.png",
-                  width: 25,
-                  height: 25,
-                ) : Image.asset(
-                  "assets/Icons/3 dots.png",
-                  width: 25,
-                  height: 25,
-                ),
+                pageIndex == 3
+                    ? Image.asset(
+                        "assets/Icons/3 dots purple.png",
+                        width: 25,
+                        height: 25,
+                      )
+                    : Image.asset(
+                        "assets/Icons/3 dots.png",
+                        width: 25,
+                        height: 25,
+                      ),
                 // SizedBox(height: 10,),
                 Text("Menu",
                     style: TextStyle(
@@ -213,4 +218,137 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+
+  Future _showModelBottomSheet(){
+    return   showModalBottomSheet(
+      context: context,
+      barrierColor: Colors.transparent,
+      backgroundColor: Colors.white,
+
+      elevation: 10,
+      useRootNavigator: true,
+      isScrollControlled: true,
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      builder: (BuildContext context) {
+        // UDE : SizedBox instead of Container for whitespaces
+        return Container(
+
+          padding: EdgeInsets.only(top: 16.0),
+          height: 600,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children:  <Widget>[
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: ListTile(
+                  title: Text("My Profile",
+                    style: TextStyleAlFifa.text,),
+                  leading: Image.asset("assets/Icons/user.png",
+                    width: 30,
+                    height: 30,),
+                ),
+              ),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("About Us",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/about us.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Contact Us",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/call.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("FAQ's",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/faqs.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Notifications",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/notifications.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Help",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/help.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Term's & Conditions",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/my request.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Privacy Policy",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/lock.png",
+                      width: 30,
+                      height: 30,),
+                  )),
+              GestureDetector(
+                  onTap: (){
+
+                  },
+                  child: ListTile(
+                    title: Text("Logout",
+                      style: TextStyleAlFifa.text,),
+                    leading: Image.asset("assets/Icons/logout.png",
+                      width: 30,
+                      height: 30,),
+                  ))
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
 }

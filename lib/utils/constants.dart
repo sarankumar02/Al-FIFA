@@ -18,6 +18,14 @@ const String homeScreen = '/homePage';
 
  }
 
+ class TextStyleAlFifa{
+   static const TextStyle text = TextStyle(
+     fontWeight: FontWeight.w800,
+     color: AppColor.primaryColor
+
+   );
+ }
+
  class FontConstant{
    static const headingText = 20.0;
  }

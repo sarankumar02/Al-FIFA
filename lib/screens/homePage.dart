@@ -117,6 +117,7 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
+                SizedBox(height: 20,),
                 GestureDetector(
                 onTap: (){},
                 child: Container(
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, i){
                         return
                           Stack(
-                            alignment: AlignmentDirectional.center,
+                            alignment: AlignmentDirectional.topStart,
                             children: [
                               Card(
                             elevation: 5,
@@ -140,16 +141,17 @@ class _HomePageState extends State<HomePage> {
 
                         ),
                               Container(
-                                alignment: Alignment.topLeft,
+
+                                alignment: Alignment.bottomLeft,
                                 padding: EdgeInsets.only(left: 20,
-                                    bottom: 20),
+                                    bottom: 20,top: 150),
 
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Image(image: AssetImage("assets/Icons/other services.png"), width: 30,height: 30,),
                                     Text("Other Services", style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.normal,
                                         color: Colors.white
                                     ),),
                                     Text("International driving ",
