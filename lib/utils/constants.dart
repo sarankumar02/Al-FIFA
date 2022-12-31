@@ -9,6 +9,11 @@ enum Languages { English, Arabic }
  const String splashScreen = '/';
  const String loginScreen = '/loginPage';
 const String homeScreen = '/homePage';
+const String visaScreenOne = '/visaScreenOne';
+const String visaScreenTwo = '/visaScreenTwo';
+const String visaRequest = '/visaRequest';
+const String travelInformation = '/travelInformation';
+const String paymentScreen = '/paymentScreen';
 
 
  class AppColor{
@@ -23,6 +28,11 @@ const String homeScreen = '/homePage';
      fontWeight: FontWeight.w800,
      color: AppColor.primaryColor
 
+   );
+
+   static const TextStyle normalText = TextStyle(
+       fontWeight: FontWeight.normal,
+       color: AppColor.secondaryColor
    );
  }
 

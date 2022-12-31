@@ -96,7 +96,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        Navigator.pushNamed(context, visaScreenOne);
+                      },
                       child: Column(
                         children: [
                           Image(image: AssetImage("assets/illustrations/visa.png"),
