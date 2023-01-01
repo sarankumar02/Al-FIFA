@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 0
                           ? AppColor.primaryColor
-                          : AppColor.blackColor,
+                          : Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 )
               ],
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 1
                           ? AppColor.primaryColor
-                          : AppColor.blackColor,
+                          : Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 )
               ],
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 2
                           ? AppColor.primaryColor
-                          : AppColor.blackColor,
+                          : Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 )
               ],
@@ -208,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 3
                           ? AppColor.primaryColor
-                          : AppColor.blackColor,
+                          : Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 )
               ],
