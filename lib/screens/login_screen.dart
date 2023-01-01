@@ -72,6 +72,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
                     BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                BorderSide(width: 3.0, color: AppColor.secondaryColor)),
             suffixIcon: Icon(
               Icons.person,
               color: AppColor.secondaryColor,
@@ -88,11 +96,20 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.only(top: 0, bottom: 10, left: 30, right: 30),
       child: TextField(
         controller: emailMobileNoCntrlr,
+        obscureText: true,
         decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
                     BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                BorderSide(width: 3.0, color: AppColor.secondaryColor)),
             suffixIcon: Icon(
               Icons.lock,
               color: AppColor.secondaryColor,

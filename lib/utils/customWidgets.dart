@@ -29,10 +29,20 @@ Widget customTextField(TextEditingController? controller, String hintText) {
   return TextField(
     controller: controller,
     decoration: InputDecoration(
+      contentPadding: EdgeInsets.all(8),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:
-            BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+            BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide:
+            BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide:
+            BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+
         hintText: hintText),
   );
 }
@@ -43,10 +53,19 @@ Widget customTextFieldIconsRight(TextEditingController? controller, String icon,
     child: TextField(
       controller: controller,
       decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(8),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
               BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide:
+              BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide:
+              BorderSide(width: 3.0, color: AppColor.secondaryColor)),
           suffixIcon: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset("assets/Icons/$icon", width: 20,height: 20,

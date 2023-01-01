@@ -22,9 +22,9 @@ class CustomElevatedButton extends StatelessWidget {
             shadowColor: Colors.black,
             elevation: 5,
             padding: EdgeInsets.only(
-                left: 30.0, right: 30.0, top: 15.0, bottom: 15.0),
+                left: 30.0, right: 30.0, top: 18.0, bottom: 18.0),
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20.0)))),
+                borderRadius: BorderRadius.all(Radius.circular(30.0)))),
       ),
     );
   }

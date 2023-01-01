@@ -21,17 +21,19 @@ class _VisaScreenOneState extends State<VisaScreenOne> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return  SafeArea(
       child: Scaffold(
-
         body: SingleChildScrollView(
           child: Column(
             children: [
+
+              SizedBox(height: 20,),
               CustomAppBar(context, "Visa"),
+
               GlobeImage(),
+
               customTextFieldIconsRight(controller, "earth.png", "Select Country"),
+
               CustomElevatedButton( text: "Continue",
                   onTap: (){
                     Navigator.pushNamed(context, visaScreenTwo);

@@ -11,7 +11,6 @@ class TravelInformation extends StatefulWidget {
 }
 
 class _TravelInformationState extends State<TravelInformation> {
-
   TextEditingController? fNameController;
   TextEditingController? lNameController;
   TextEditingController? motherFNameController;
@@ -32,53 +31,76 @@ class _TravelInformationState extends State<TravelInformation> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return  Scaffold(
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(right: 8, left: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40,),
+              const  SizedBox(
+                height: 40,
+              ),
               CustomAppBar(context, "Travel Information"),
-              SizedBox(height: 20,),
+            const  SizedBox(
+                height: 20,
+              ),
               Container(
                 padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                child: Text("Traveler's Information",
-                style: TextStyleAlFifa.text,),
-
+                child: Text(
+                  "Traveler's Information",
+                  style: TextStyleAlFifa.text,
+                ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               travelerFLName(width),
-
-              SizedBox(height: 20,),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               uploadPassport(width),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               uploadPhoto(width),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                child: Text("Mother's Information",
-                  style: TextStyleAlFifa.text,),
-
+                child: Text(
+                  "Mother's Information",
+                  style: TextStyleAlFifa.text,
+                ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               motherInformation(width),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
-                child: CustomDropDown(icon: "", hintText: "",
-                isShowPrefixIcon: false,
-                isShowSuffixIcon: false),
+                child: CustomDropDown(
+                    icon: "",
+                    hintText: "",
+                    isShowPrefixIcon: false,
+                    isShowSuffixIcon: false),
               ),
-              SizedBox(height: 20,),
-              CustomElevatedButton(onTap: (){
-                Navigator.pushNamed(context, paymentScreen);
-
-              }, text: "Proceed Payment")
-
-
-
+              SizedBox(
+                height: height / 6,
+              ),
+              CustomElevatedButton(
+                  onTap: () {
+                    Navigator.pushNamed(context, paymentScreen);
+                  },
+                  text: "Proceed Payment"),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),
@@ -86,91 +108,55 @@ class _TravelInformationState extends State<TravelInformation> {
     );
   }
 
-  Widget travelerFLName(double width){
-    return  Row(
+  Widget travelerFLName(double width) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
             height: 50,
-            width: width/2.5,
+            width: width / 2.5,
             child: customTextField(fNameController, "First Name")),
         Container(
             height: 50,
-            width: width/2.5,
+            width: width / 2.5,
             child: customTextField(lNameController, "Last Name"))
       ],
     );
   }
 
-  Widget uploadPassport(double width){
-    return  Row(
+  Widget uploadPassport(double width) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          alignment: Alignment.topCenter,
+            alignment: Alignment.topCenter,
             padding: EdgeInsets.only(left: 30),
             // height: 50,
             // width: width/2.5,
             child: Text("Upload Passport")),
         Container(
             // height: 50,
-           //  width: width/2.5,
-          padding: EdgeInsets.only(right: 30),
-            child: Row(
-               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap:(){},
-                  child: Image.asset("assets/Icons/camera.png",
-                  width: 30,
-                  height: 30,),
-                ),
-                SizedBox(width: 30,),
-                GestureDetector(
-                  onTap:(){},
-                  child: Image.asset("assets/Icons/photo.png",
-                    width: 30,
-                    height: 30),
-                )
-              ],
-            ))
-      ],
-    );
-  }
-
-
-
-  Widget uploadPhoto(double width){
-    return  Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.only(left: 30),
-            alignment: Alignment.center,
-            // height: 50,
-           //  width: width/2.5,
-            child: Text("Upload Photo")),
-        Container(
-          // height: 50,
-           // width: width/2.5,
+            //  width: width/2.5,
             padding: EdgeInsets.only(right: 30),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap:(){},
-                  child: Image.asset("assets/Icons/camera.png",
+                  onTap: () {},
+                  child: Image.asset(
+                    "assets/Icons/camera.png",
                     width: 30,
-                    height: 30,),
+                    height: 30,
+                  ),
                 ),
-                SizedBox(width: 30,),
+                SizedBox(
+                  width: 30,
+                ),
                 GestureDetector(
-                  onTap:(){},
+                  onTap: () {},
                   child: Image.asset("assets/Icons/photo.png",
-                      width: 30,
-                      height: 30),
+                      width: 30, height: 30),
                 )
               ],
             ))
@@ -178,69 +164,125 @@ class _TravelInformationState extends State<TravelInformation> {
     );
   }
 
-  Widget motherInformation(double width){
-    return  Row(
+  Widget uploadPhoto(double width) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+            padding: EdgeInsets.only(left: 30),
+            alignment: Alignment.center,
+            // height: 50,
+            //  width: width/2.5,
+            child: Text("Upload Photo")),
+        Container(
+            // height: 50,
+            // width: width/2.5,
+            padding: EdgeInsets.only(right: 30),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Image.asset(
+                    "assets/Icons/camera.png",
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Image.asset("assets/Icons/photo.png",
+                      width: 30, height: 30),
+                )
+              ],
+            ))
+      ],
+    );
+  }
+
+  Widget motherInformation(double width) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
             height: 50,
-            width: width/2.5,
+            width: width / 2.5,
             child: customTextField(motherFNameController, "First Name")),
         Container(
             height: 50,
-            width: width/2.5,
+            width: width / 2.5,
             child: customTextField(motherLNameController, "Last Name"))
       ],
     );
   }
 
-
-  Widget CustomDropDown( {String? icon, String? hintText,bool? isShowPrefixIcon, bool? isShowSuffixIcon}) {
+  Widget CustomDropDown(
+      {String? icon,
+      String? hintText,
+      bool? isShowPrefixIcon,
+      bool? isShowSuffixIcon}) {
     return SizedBox(
       height: 60,
-      child: FormField(
-          builder: (FormFieldState<String> state) {
-            return InputDecorator(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(60),
-                        borderSide:
+      child: FormField(builder: (FormFieldState<String> state) {
+        return InputDecorator(
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(8),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(60),
+                    borderSide:
                         BorderSide(width: 5.0, color: AppColor.secondaryColor)),
-                    suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Visibility(
-                                visible: isShowSuffixIcon!,
-                                child: Image.asset("assets/Icons/$icon", width: 30,height: 30,
-                                )),
-                            SizedBox(width: 10,),
-                            Image.asset("assets/Icons/drop down.png", width: 20,height: 20,
-                            ),
-
-                          ],
-                        )
-                    ),
-
-                    hintText: hintText),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    icon:  Visibility(visible: false,child: Icon(Icons.arrow_downward),),
-                    items: dropdownItems,
-                    value: selectedValue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedValue = newValue!;
-                      });
-                    },
-                  ),
-                ));
-          }),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                        BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                        BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+                suffixIcon: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Visibility(
+                            visible: isShowSuffixIcon!,
+                            child: Image.asset(
+                              "assets/Icons/$icon",
+                              width: 30,
+                              height: 30,
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Image.asset(
+                          "assets/Icons/drop down.png",
+                          width: 20,
+                          height: 20,
+                        ),
+                      ],
+                    )),
+                hintText: hintText),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                icon: Visibility(
+                  visible: false,
+                  child: Icon(Icons.arrow_downward),
+                ),
+                items: dropdownItems,
+                value: selectedValue,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedValue = newValue!;
+                  });
+                },
+              ),
+            ));
+      }),
     );
   }
-
-
-
 }

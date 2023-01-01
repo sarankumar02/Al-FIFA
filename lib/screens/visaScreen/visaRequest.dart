@@ -34,10 +34,12 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
             SizedBox(
               height: 40,
             ),
+
             CustomAppBar(context, "Visa"),
             SizedBox(
               height: 30,
             ),
+
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30),
               child: CustomDropDown(
@@ -49,6 +51,7 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
             SizedBox(
               height: 20,
             ),
+
             Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: CustomDropDown(
@@ -60,14 +63,14 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
             SizedBox(
               height: height/2,
             ),
+
             Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: CustomElevatedButton(
                     onTap: () {
                       Navigator.pushNamed(context, travelInformation);
-
-
                     }, text: "Start a Visa Request"))
+
           ])),
     );
   }
@@ -86,6 +89,14 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                     borderRadius: BorderRadius.circular(60),
                     borderSide:
                         BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                    BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                    BorderSide(width: 3.0, color: AppColor.secondaryColor)),
                 suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Row(

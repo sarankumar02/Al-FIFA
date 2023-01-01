@@ -45,52 +45,82 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
               CustomAppBar(context, "Visa"),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
-                child: CustomDropDown(icon: "earth.png",hintText: "",isShowPrefixIcon: true, isShowSuffixIcon: true),
+                child: CustomDropDown(
+                    icon: "earth.png",
+                    hintText: "",
+                    isShowPrefixIcon: true,
+                    isShowSuffixIcon: true),
               ),
-              SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30),
-            child:   CustomDropDown(icon: "visa.png",hintText: "",isShowPrefixIcon: true, isShowSuffixIcon: false)),
-              SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30),
-            child: CustomDropDown(icon: "location.png",hintText: "",isShowPrefixIcon: true, isShowSuffixIcon: false),),
-          Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-            child:Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height : 60,
-                        width: width / 2.5,
-                        child: CalendarTextField(dateController)),
-                    Container(
-                        height : 60,
-                        width: width / 2.5,
-                        child: CustomDropDown(
-                            icon: "user.png", hintText: "",
-                        isShowSuffixIcon: false,
-                        isShowPrefixIcon: true))
-                  ],
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: CustomDropDown(
+                      icon: "visa.png",
+                      hintText: "",
+                      isShowPrefixIcon: true,
+                      isShowSuffixIcon: false)),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
+                child: CustomDropDown(
+                    icon: "location.png",
+                    hintText: "",
+                    isShowPrefixIcon: true,
+                    isShowSuffixIcon: false),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                          height: 60,
+                          width: width / 2.5,
+                          child: CalendarTextField(dateController)),
+                      Container(
+                          height: 60,
+                          width: width / 2.5,
+                          child: CustomDropDown(
+                              icon: "user.png",
+                              hintText: "",
+                              isShowSuffixIcon: false,
+                              isShowPrefixIcon: true))
+                    ],
+                  ),
                 ),
-              ),),
-              SizedBox(height: 60,),
+              ),
+              SizedBox(
+                height: 60,
+              ),
               Container(
                 padding: EdgeInsets.only(left: 40),
                 alignment: Alignment.centerLeft,
-                child: Text("Do you have promo code?",
-                  style: TextStyleAlFifa.normalText,),
+                child: Text(
+                  "Do you have promo code?",
+                  style: TextStyleAlFifa.normalText,
+                ),
               ),
               customTextFieldIconsRight(
                   promoCodeController, "promo.png", "Enter Promo Code"),
-              CustomElevatedButton(text: "Submit Request", onTap: () {
-                Navigator.pushNamed(context, visaRequest);
-              })
+              CustomElevatedButton(
+                  text: "Submit Request",
+                  onTap: () {
+                    Navigator.pushNamed(context, visaRequest);
+                  })
             ],
           ),
         ),
@@ -105,10 +135,19 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(8.0),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
                     BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                    BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                    BorderSide(width: 3.0, color: AppColor.secondaryColor)),
             suffixIcon: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
@@ -122,48 +161,70 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
     );
   }
 
-  Widget CustomDropDown({String? icon, String? hintText,bool? isShowPrefixIcon, bool? isShowSuffixIcon}) {
+  Widget CustomDropDown(
+      {String? icon,
+      String? hintText,
+      bool? isShowPrefixIcon,
+      bool? isShowSuffixIcon}) {
     return SizedBox(
       height: 60,
-      child: FormField(
-          builder: (FormFieldState<String> state) {
+      child: FormField(builder: (FormFieldState<String> state) {
         return InputDecorator(
             decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(60),
                     borderSide:
-                    BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                        BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                        BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide:
+                        BorderSide(width: 3.0, color: AppColor.secondaryColor)),
                 suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Visibility(
-                        visible: isShowSuffixIcon!,
-                          child: Image.asset("assets/Icons/$icon", width: 30,height: 30,
-                      )),
-                      SizedBox(width: 10,),
-                      Image.asset("assets/Icons/drop down.png", width: 20,height: 20,
-                      ),
-
-                    ],
-                  )
-                ),
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Visibility(
+                            visible: isShowSuffixIcon!,
+                            child: Image.asset(
+                              "assets/Icons/$icon",
+                              width: 30,
+                              height: 30,
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Image.asset(
+                          "assets/Icons/drop down.png",
+                          width: 20,
+                          height: 20,
+                        ),
+                      ],
+                    )),
                 prefixIcon: Visibility(
                   visible: isShowPrefixIcon!,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset("assets/Icons/$icon", width: 20,height: 20,
+                    child: Image.asset(
+                      "assets/Icons/$icon",
+                      width: 20,
+                      height: 20,
                     ),
                   ),
                 ),
-
                 hintText: hintText),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                icon:  Visibility(visible: false,child: Icon(Icons.arrow_downward),),
+                icon: Visibility(
+                  visible: false,
+                  child: Icon(Icons.arrow_downward),
+                ),
                 items: dropdownItems,
                 value: selectedValue,
                 onChanged: (String? newValue) {
@@ -177,22 +238,23 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
     );
   }
 
-
-
-  Widget CalendarTextField(TextEditingController? dateController){
+  Widget CalendarTextField(TextEditingController? dateController) {
     return TextField(
-
       controller: dateController,
       //editing controller of this TextField
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
-              BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                  BorderSide(width: 5.0, color: AppColor.secondaryColor)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
-              BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                  BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide:
+                  BorderSide(width: 3.0, color: AppColor.secondaryColor)),
           prefixIcon: Icon(
             Icons.calendar_today,
             color: AppColor.secondaryColor,
@@ -200,27 +262,29 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
           hintText: ""),
       readOnly: true,
 
-      onTap: () async{
+      onTap: () async {
         DateTime? pickedDate = await showDatePicker(
-            context: context, initialDate: DateTime.now(),
-            firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
-            lastDate: DateTime(2101)
-        );
-        if(pickedDate != null ){
-          print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(
+                2000), //DateTime.now() - not to allow to choose before today.
+            lastDate: DateTime(2101));
+        if (pickedDate != null) {
+          print(
+              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
           String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-          print(formattedDate); //formatted date output using intl package =>  2021-03-16
+          print(
+              formattedDate); //formatted date output using intl package =>  2021-03-16
           //you can implement different kind of Date Format here according to your requirement
 
           setState(() {
-            dateController?.text = formattedDate; //set output date to TextField value.
+            dateController?.text =
+                formattedDate; //set output date to TextField value.
           });
-        }else{
+        } else {
           print("Date is not selected");
         }
-
       },
     );
   }
-
 }
