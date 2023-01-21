@@ -14,6 +14,7 @@ const String visaScreenTwo = '/visaScreenTwo';
 const String visaRequest = '/visaRequest';
 const String travelInformation = '/travelInformation';
 const String paymentScreen = '/paymentScreen';
+const String cameraScreen = '/cameraScreen';
 
 
  class AppColor{

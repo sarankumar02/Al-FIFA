@@ -6,6 +6,7 @@ import 'package:al_fifa/screens/travelInformation/travelInformation.dart';
 import 'package:al_fifa/screens/visaScreen/visaRequest.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenOne.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenTwo.dart';
+import 'package:al_fifa/utils/camera.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,8 @@ class FifaRouter {
         return MaterialPageRoute(builder: (_) => TravelInformation());
       case paymentScreen:
         return MaterialPageRoute(builder: (_) => PaymentScreen());
+      case cameraScreen:
+        return MaterialPageRoute(builder: (_) => CameraExampleHome());
       default:
         return  MaterialPageRoute(
             builder: (_) => Scaffold(

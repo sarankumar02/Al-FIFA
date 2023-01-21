@@ -143,7 +143,9 @@ class _TravelInformationState extends State<TravelInformation> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, cameraScreen);
+                  },
                   child: Image.asset(
                     "assets/Icons/camera.png",
                     width: 30,
