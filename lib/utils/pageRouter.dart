@@ -1,5 +1,6 @@
 import 'package:al_fifa/screens/homeScreen.dart';
 import 'package:al_fifa/screens/login_screen.dart';
+import 'package:al_fifa/screens/myRequest/myRequest.dart';
 import 'package:al_fifa/screens/payment/paymentScreen.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
 import 'package:al_fifa/screens/travelInformation/travelInformation.dart';
@@ -31,6 +32,8 @@ class FifaRouter {
         return MaterialPageRoute(builder: (_) => PaymentScreen());
       case cameraScreen:
         return MaterialPageRoute(builder: (_) => CameraExampleHome());
+      case myRequestScreen:
+        return MaterialPageRoute(builder: (_) => MyRequestScreen());
       default:
         return  MaterialPageRoute(
             builder: (_) => Scaffold(
