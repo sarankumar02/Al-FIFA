@@ -29,7 +29,7 @@ Widget customTextField(TextEditingController? controller, String hintText) {
   return TextField(
     controller: controller,
     decoration: InputDecoration(
-      contentPadding: EdgeInsets.all(8),
+      contentPadding: EdgeInsets.only(left: 12.0),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:

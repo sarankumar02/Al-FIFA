@@ -168,7 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
               color: AppColor.secondaryColor,
             )),
-            onPressed: (){},
+            onPressed: (){
+             Navigator.pushNamed(context, registerScreen);
+            },
           ),
         ],
       ),

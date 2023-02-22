@@ -8,6 +8,7 @@ enum Languages { English, Arabic }
 //Page Router
  const String splashScreen = '/';
  const String loginScreen = '/loginPage';
+const String registerScreen ="/registerScreen";
 const String homeScreen = '/homePage';
 const String visaScreenOne = '/visaScreenOne';
 const String visaScreenTwo = '/visaScreenTwo';
@@ -16,7 +17,7 @@ const String travelInformation = '/travelInformation';
 const String paymentScreen = '/paymentScreen';
 const String cameraScreen = '/cameraScreen';
 const String myRequestScreen = '/myRequestScreen';
-
+const String myProfileScreen ="/myProfileScreen";
 
  class AppColor{
    static const primaryColor = Color(0xff8046aa);

@@ -244,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children:  <Widget>[
               GestureDetector(
                 onTap: (){
-
+Navigator.pushNamed(context, myProfileScreen);
                 },
                 child: ListTile(
                   title: Text("My Profile",
