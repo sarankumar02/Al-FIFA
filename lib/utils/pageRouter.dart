@@ -1,5 +1,6 @@
 import 'package:al_fifa/screens/homeScreen.dart';
 import 'package:al_fifa/screens/login_screen.dart';
+import 'package:al_fifa/screens/otherServices/other_services.dart';
 import 'package:al_fifa/screens/payment/paymentScreen.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
 import 'package:al_fifa/screens/travelInformation/travelInformation.dart';
@@ -28,6 +29,8 @@ class FifaRouter {
         return MaterialPageRoute(builder: (_) => TravelInformation());
       case paymentScreen:
         return MaterialPageRoute(builder: (_) => PaymentScreen());
+       case otherServices:
+        return MaterialPageRoute(builder: (_) => OtherServices());
       default:
         return  MaterialPageRoute(
             builder: (_) => Scaffold(

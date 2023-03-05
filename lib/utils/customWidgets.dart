@@ -12,7 +12,7 @@ Widget CustomAppBar(BuildContext context, String title) {
          onTap: () {
            Navigator.pop(context);
          },
-         child: Image.asset("assets/Icons/back.png", width: 30, height: 30,),
+         child: Image.asset("assets/Icons/back.png", width: 20, height: 20,),
        ),
        Text(title, style: TextStyleAlFifa.text,),
        Text("arabic", style: TextStyleAlFifa.text)
@@ -29,7 +29,8 @@ Widget customTextField(TextEditingController? controller, String hintText) {
   return TextField(
     controller: controller,
     decoration: InputDecoration(
-      contentPadding: EdgeInsets.all(8),
+      
+      contentPadding: EdgeInsets.only(left: 32,top: 20,bottom: 20),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:
@@ -43,7 +44,13 @@ Widget customTextField(TextEditingController? controller, String hintText) {
             borderSide:
             BorderSide(width: 3.0, color: AppColor.secondaryColor)),
 
-        hintText: hintText),
+        hintText: hintText
+        
+        ,
+        
+      
+
+        ),
   );
 }
 

@@ -14,6 +14,7 @@ const String visaScreenTwo = '/visaScreenTwo';
 const String visaRequest = '/visaRequest';
 const String travelInformation = '/travelInformation';
 const String paymentScreen = '/paymentScreen';
+const String otherServices = '/otherServices';
 
 
  class AppColor{
@@ -37,7 +38,7 @@ const String paymentScreen = '/paymentScreen';
  }
 
  class FontConstant{
-   static const headingText = 20.0;
+   static const headingText = 24.0;
  }
 
 class AppConstants {

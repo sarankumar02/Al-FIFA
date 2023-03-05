@@ -15,10 +15,10 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("USA"), value: "USA"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(value: "USA", child: Text("USA")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
     ];
     return menuItems;
   }
@@ -31,12 +31,12 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
 
             CustomAppBar(context, "Visa"),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -48,7 +48,7 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                   isShowPrefixIcon: true,
                   isShowSuffixIcon: true),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
 
@@ -88,15 +88,15 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(60),
                     borderSide:
-                        BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                        const BorderSide(width: 5.0, color: AppColor.secondaryColor)),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide:
-                    BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                    const BorderSide(width: 2.0, color: AppColor.secondaryColor)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide:
-                    BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+                    const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
                 suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Row(
@@ -110,7 +110,7 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                               width: 30,
                               height: 30,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
@@ -134,7 +134,7 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                 hintText: hintText),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                icon: Visibility(
+                icon: const Visibility(
                   visible: false,
                   child: Icon(Icons.arrow_downward),
                 ),

@@ -1,4 +1,5 @@
 import 'package:al_fifa/utils/constants.dart';
+import 'package:al_fifa/utils/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 forgotPassWordText(),
                 loginButton(),
                 dontHaveAccText(),
-                 socialLogin()
+                socialLogin()
               ],
             ),
           )),
@@ -52,9 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // ii - Login Text
   Widget loginText() {
-    return const Text(
+    return Text(
       "Login",
-      style: TextStyle(
+      style: customBRCobaneTextStyle(
+      
           color: AppColor.primaryColor,
           fontSize: FontConstant.headingText,
           fontWeight: FontWeight.bold),
@@ -75,11 +77,11 @@ class _LoginScreenState extends State<LoginScreen> {
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
-                BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                    BorderSide(width: 2.0, color: AppColor.secondaryColor)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
-                BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+                    BorderSide(width: 3.0, color: AppColor.secondaryColor)),
             suffixIcon: Icon(
               Icons.person,
               color: AppColor.secondaryColor,
@@ -88,7 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
   // iv - Password input field
   Widget passWordWidget() {
@@ -105,11 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
-                BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                    BorderSide(width: 2.0, color: AppColor.secondaryColor)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide:
-                BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+                    BorderSide(width: 3.0, color: AppColor.secondaryColor)),
             suffixIcon: Icon(
               Icons.lock,
               color: AppColor.secondaryColor,
@@ -118,7 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
   // v - forgot password text
   Widget forgotPassWordText() {
@@ -131,20 +131,21 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
   // vi - Login button
   Widget loginButton() {
     return Container(
       padding: EdgeInsets.only(top: 10, left: 30, right: 30),
       width: double.infinity,
       child: ElevatedButton(
-        child: Text("Login"),
+        child: Text(
+          "Login",
+        ),
         onPressed: () {
           Navigator.pushReplacementNamed(context, "/homePage");
         },
         style: ElevatedButton.styleFrom(
-            primary: AppColor.secondaryColor,
-            onPrimary: Colors.white,
+            foregroundColor: Colors.white,
+            backgroundColor: AppColor.secondaryColor,
             shadowColor: Colors.black,
             elevation: 5,
             padding: EdgeInsets.only(
@@ -155,7 +156,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
   // vii - Register
   Widget dontHaveAccText() {
     return Container(
@@ -164,11 +164,11 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Text("Don't Have an account?"),
           TextButton(
-           child : Text("Register",
-            style: TextStyle(
-              color: AppColor.secondaryColor,
-            )),
-            onPressed: (){},
+            child: Text("Register",
+                style: TextStyle(
+                  color: AppColor.secondaryColor,
+                )),
+            onPressed: () {},
           ),
         ],
       ),
@@ -176,36 +176,41 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // viii - social login
-  Widget socialLogin(){
+  Widget socialLogin() {
     return Container(
-      child: Column(
-          children :[
-        Text("Or login with",
-        style: TextStyle(
-          color: AppColor.primaryColor),
+      child: Column(children: [
+        Text(
+          "Or login with",
+          style: TextStyle(color: AppColor.primaryColor),
         ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: (){},
-                  child: Image.asset("assets/Icons/facebook.png", width: 50,height: 50,),
-                ),
-                SizedBox(width: 10,),
-                GestureDetector(
-                  onTap: (){},
-                  child: Image.asset("assets/Icons/google plus.png", width: 50,height: 50,),
-                )
-
-
-              ],
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                "assets/Icons/facebook.png",
+                width: 50,
+                height: 50,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                "assets/Icons/google plus.png",
+                width: 50,
+                height: 50,
+              ),
             )
+          ],
+        )
       ]),
     );
   }
-
-
-
-
 }

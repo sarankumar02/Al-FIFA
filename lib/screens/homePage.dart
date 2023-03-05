@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       onTap: (){},
                       child: Column(
-                        children: [
+                        children: const [
                           Image(image: AssetImage("assets/illustrations/passport.png"),
                             width: 100,),
                           Text("Passport & \nrelated services")
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.pushNamed(context, visaScreenOne);
                       },
                       child: Column(
-                        children: [
+                        children: const [
                           Image(image: AssetImage("assets/illustrations/visa.png"),
                             width: 100,),
                           Text("Visa \n ")
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       onTap: (){},
                       child: Column(
-                        children: [
+                        children: const [
                           Image(image: AssetImage("assets/illustrations/travel packages.png"),
                             width: 100,),
                           Text("Packages Stay &\nTravel")
@@ -129,42 +129,47 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                       itemBuilder: (context, i){
                         return
-                          Stack(
-                            alignment: AlignmentDirectional.topStart,
-                            children: [
-                              Card(
-                            elevation: 5,
-                            clipBehavior: Clip.antiAlias,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Image(image: AssetImage("assets/illustrations/dummy.png"),
-                            width: 300,
-                            fit: BoxFit.fill,),
-
-                        ),
-                              Container(
-
-                                alignment: Alignment.bottomLeft,
-                                padding: EdgeInsets.only(left: 20,
-                                    bottom: 20,top: 150),
-
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image(image: AssetImage("assets/Icons/other services.png"), width: 30,height: 30,),
-                                    Text("Other Services", style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.white
-                                    ),),
-                                    Text("International driving ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.white
-                                        ))
-                                  ],
+                          InkWell(
+                            onTap: (){
+                                 Navigator.pushNamed(context, otherServices);
+                            },
+                            child: Stack(
+                              alignment: AlignmentDirectional.topStart,
+                              children: [
+                                Card(
+                              elevation: 5,
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Image(image: AssetImage("assets/illustrations/dummy.png"),
+                              width: 300,
+                              fit: BoxFit.fill,),
+                          
+                                                  ),
+                                Container(
+                          
+                                  alignment: Alignment.bottomLeft,
+                                  padding: EdgeInsets.only(left: 20,
+                                      bottom: 20,top: 150),
+                          
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: const [
+                                      Image(image: AssetImage("assets/Icons/other services.png"), width: 30,height: 30,),
+                                      Text("Other Services", style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.white
+                                      ),),
+                                      Text("International driving ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.white
+                                          ))
+                                    ],
+                                  ),
                                 ),
-                              ),
-                        ]
+                                                  ]
+                            ),
                           );
                       }),
                 ),
