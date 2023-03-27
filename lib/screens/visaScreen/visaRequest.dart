@@ -69,7 +69,8 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                 child: CustomElevatedButton(
                     onTap: () {
                       Navigator.pushNamed(context, travelInformation);
-                    }, text: "Start a Visa Request"))
+                    }, text: "Start a Visa Request")),
+                    
 
           ])),
     );

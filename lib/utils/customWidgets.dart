@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 Widget CustomAppBar(BuildContext context, String title) {
  return Container(
-   padding: EdgeInsets.only(top: 20, left: 12, right: 12),
+   padding: const EdgeInsets.only(top: 20, left: 12, right: 12),
    child: Row(
      mainAxisAlignment: MainAxisAlignment.spaceBetween,
      children: [
@@ -14,8 +14,8 @@ Widget CustomAppBar(BuildContext context, String title) {
          },
          child: Image.asset("assets/Icons/back.png", width: 30, height: 30,),
        ),
-       Text(title, style: TextStyleAlFifa.text,),
-       Text("arabic", style: TextStyleAlFifa.text)
+       Text(title, style: TextStyleAlFifa.titleLabel,),
+       const Text("arabic", style: TextStyleAlFifa.text)
      ],
 
 
@@ -25,25 +25,54 @@ Widget CustomAppBar(BuildContext context, String title) {
 
 
 
-Widget customTextField(TextEditingController? controller, String hintText) {
+Widget customTextField2(TextEditingController? controller, String hintText,String? errorText,Function(String) onChanged) {
   return TextField(
     controller: controller,
     decoration: InputDecoration(
-      contentPadding: EdgeInsets.only(left: 12.0),
+      contentPadding: const EdgeInsets.only(left: 12.0),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:
-            BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+            const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:
-            BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+            const BorderSide(width: 2.0, color: AppColor.secondaryColor)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide:
-            BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+            const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
 
-        hintText: hintText),
+        hintText: hintText,
+        errorText: errorText,
+        ),
+        onChanged: onChanged,
+  );
+}
+
+Widget customTextField(TextEditingController? controller, String hintText,String? errorText,Function(String) onChanged,bool obscureText) {
+  return TextField(
+    obscureText:obscureText ,
+    // controller: controller,
+    decoration: InputDecoration(
+      contentPadding: const EdgeInsets.only(left: 12.0),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide:
+            const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide:
+            const BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide:
+            const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+
+        hintText: hintText,  hintStyle: TextStyleAlFifa.normalText,
+        errorText: errorText,
+        ),
+        onChanged: onChanged,
   );
 }
 
@@ -53,19 +82,19 @@ Widget customTextFieldIconsRight(TextEditingController? controller, String icon,
     child: TextField(
       controller: controller,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: const EdgeInsets.all(8),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
-              BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+              const BorderSide(width: 5.0, color: AppColor.secondaryColor)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
-              BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+              const BorderSide(width: 2.0, color: AppColor.secondaryColor)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide:
-              BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+              const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
           suffixIcon: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset("assets/Icons/$icon", width: 20,height: 20,

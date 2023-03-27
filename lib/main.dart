@@ -1,13 +1,31 @@
+
+
+import 'dart:io';
+
 import 'package:al_fifa/app_localization.dart';
+import 'package:al_fifa/bloc/auth_bloc.dart';
+import 'package:al_fifa/bloc/login_bloc.dart';
+import 'package:al_fifa/bloc/other_services.dart';
+import 'package:al_fifa/bloc/passport_bloc.dart';
+import 'package:al_fifa/bloc/profile_bloc.dart';
+import 'package:al_fifa/bloc/reset_bloc.dart';
 import 'package:al_fifa/bloc/settings_bloc.dart';
+
 import 'package:al_fifa/screens/login_screen.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
 import 'package:al_fifa/utils/pageRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient( context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 void main() {
+   HttpOverrides.global = new MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -20,8 +38,15 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       Provider<SettingsBloc>(
         create: (_) => SettingsBloc(),
+       
       ),
-    ], child: MyWidget());
+       Provider<AuthBloc>(create: (_) => AuthBloc()),
+            Provider<LoginBloc>(create: (_) => LoginBloc()),
+            Provider<UserDetailsBloc>(create: (_) => UserDetailsBloc()),
+            Provider<ResetPassswordBloc>(create: (_) => ResetPassswordBloc()),
+            Provider<PassportBloc>(create: (_) => PassportBloc()),
+            Provider<OtherServicesBloc>(create: (_) => OtherServicesBloc()),
+    ], child: const MyWidget());
   }
 }
 
@@ -47,6 +72,7 @@ class _MyWidgetState extends State<MyWidget> {
               Locale('ar', 'AR'),
               Locale('en', 'US'),
             ],
+            
             localizationsDelegates: const [
               DemoLocalizationsDelegate(),
               GlobalCupertinoLocalizations.delegate,

@@ -1,5 +1,8 @@
+import 'package:al_fifa/bloc/forgot_bloc.dart';
 import 'package:al_fifa/bloc/login_bloc.dart';
+import 'package:al_fifa/bloc/reset_bloc.dart';
 import 'package:al_fifa/utils/constants.dart';
+import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,21 +11,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   TextEditingController? emailMobileNoCntrlr;
-  late LoginBloc loginBloc;
-    @override
+  late ResetPassswordBloc resetPassswordBloc;
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loginBloc = LoginBloc();
+    resetPassswordBloc = ResetPassswordBloc();
   }
 
   @override
@@ -53,11 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   loginText(),
                   emailPhoneWidget(),
-                  passWordWidget(),
-                  forgotPassWordText(),
+                  emailPasswordWidget(),
+                  emailConfirmPasswordWidget(),
+                  // passWordWidget(),
+                  // forgotPassWordText(),
                   loginButton(),
-                  dontHaveAccText(),
-                  socialLogin()
+                  // dontHaveAccText(),
+                  // socialLogin()
                 ],
               ),
             )),
@@ -77,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // ii - Login Text
   Widget loginText() {
     return const Text(
-      "Login",
+      "Reset password",
       style: TextStyle(
           color: AppColor.primaryColor,
           fontSize: FontConstant.headingText,
@@ -90,11 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
       child: StreamBuilder(
-          stream: loginBloc.email,
+          stream: resetPassswordBloc.email,
           builder: (context, snapshot) {
             return TextField(
               // controller: emailMobileNoCntrlr,
-              onChanged: loginBloc.changeEmail,
+              onChanged: resetPassswordBloc.changeEmail,
               decoration: InputDecoration(
                   errorText: (snapshot.error.toString() == 'null')
                       ? null
@@ -115,25 +120,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     Icons.person,
                     color: AppColor.secondaryColor,
                   ),
-                  hintText: "Email ID / Mobile no",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
+                  hintText: "Email ID / Mobile no",  hintStyle: TextStyleAlFifa.normalText),
             );
           }),
     );
   }
 
-  // iv - Password input field
-  Widget passWordWidget() {
+  Widget emailPasswordWidget() {
     return Padding(
-      padding: const EdgeInsets.only(top: 0, bottom: 10, left: 30, right: 30),
+      padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
       child: StreamBuilder(
-          stream: loginBloc.password,
+          stream: resetPassswordBloc.password,
           builder: (context, snapshot) {
             return TextField(
-              // controller: emailMobileNoCntrlr,
               obscureText: true,
-              onChanged: loginBloc.changePassword,
+              // controller: emailMobileNoCntrlr,
+              onChanged: resetPassswordBloc.changePassword,
               decoration: InputDecoration(
                   errorText: (snapshot.error.toString() == 'null')
                       ? null
@@ -154,58 +156,75 @@ class _LoginScreenState extends State<LoginScreen> {
                     Icons.lock,
                     color: AppColor.secondaryColor,
                   ),
-                  hintText: "Password",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
+                  hintText: "Enter Password",  hintStyle: TextStyleAlFifa.normalText),
             );
           }),
     );
   }
 
-  // v - forgot password text
-  Widget forgotPassWordText() {
-    return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, forgotPasswordScreen);
-      },
-      child: Container(
-        padding: const EdgeInsets.only(right: 30),
-        alignment: Alignment.centerRight,
-        child: const Text(
-          "Forgot Password?",
-          style: TextStyle(fontFamily: "Tajawal-Regular",fontSize: 15),
-        ),
-      ),
+  Widget emailConfirmPasswordWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
+      child: StreamBuilder(
+          stream: resetPassswordBloc.confirmPassword,
+          builder: (context, snapshot) {
+            return TextField(
+              obscureText: true,
+              // controller: emailMobileNoCntrlr,
+              onChanged: resetPassswordBloc.changeConfirmPassword,
+              decoration: InputDecoration(
+                  errorText: (snapshot.error.toString() == 'null')
+                      ? null
+                      : snapshot.error.toString(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                          width: 5.0, color: AppColor.secondaryColor)),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                          width: 2.0, color: AppColor.secondaryColor)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                          width: 3.0, color: AppColor.secondaryColor)),
+                  suffixIcon: const Icon(
+                    Icons.lock,
+                    color: AppColor.secondaryColor,
+                  ),
+                  hintText: "Enter Confirm Password",  hintStyle: TextStyleAlFifa.normalText),
+            );
+          }),
     );
   }
 
   // vi - Login button
   Widget loginButton() {
     return StreamBuilder<bool>(
-        stream: loginBloc.loginValid,
+        stream: resetPassswordBloc.resetPasswordValid,
         builder: (context, snapshot) {
           return Container(
             padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
             width: double.infinity,
             child: ElevatedButton(
-              child: const Text("Login"),
-              onPressed: 
+              child: const Text("Submit"),
+              onPressed:
                   // print("Running");
-                !snapshot.hasData
-                    ? () {
-                      print("not vaild");
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text(AppConstants.pleaseFillAllFields)));
-                      }
-                    : () {
-                        print(" vaild");
-                        loginBloc.loginUser(context: context);
-                      },
+                  !snapshot.hasData
+                      ? () {
+                          print("not vaild");
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text(AppConstants.pleaseFillAllFields)));
+                        }
+                      : () {
+                          print(" vaild");
+                          resetPassswordBloc.resetpassword(context: context);
+                        },
 
-                // Navigator.pushReplacementNamed(context, "/homePage");
-              
+              // Navigator.pushReplacementNamed(context, "/homePage");
+
               style: ElevatedButton.styleFrom(
                   primary: AppColor.secondaryColor,
                   onPrimary: Colors.white,

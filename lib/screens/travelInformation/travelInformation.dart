@@ -20,10 +20,10 @@ class _TravelInformationState extends State<TravelInformation> {
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("USA"), value: "USA"),
-      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-      DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-      DropdownMenuItem(child: Text("England"), value: "England"),
+      const DropdownMenuItem(child: Text("USA"), value: "USA"),
+      const DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+      const DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+      const DropdownMenuItem(child: Text("England"), value: "England"),
     ];
     return menuItems;
   }
@@ -47,38 +47,38 @@ class _TravelInformationState extends State<TravelInformation> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                child: Text(
+                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+                child: const Text(
                   "Traveler's Information",
                   style: TextStyleAlFifa.text,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               travelerFLName(width),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               uploadPassport(width),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               uploadPhoto(width),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                child: Text(
+                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+                child: const Text(
                   "Mother's Information",
                   style: TextStyleAlFifa.text,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               motherInformation(width),
@@ -98,7 +98,7 @@ class _TravelInformationState extends State<TravelInformation> {
                     Navigator.pushNamed(context, paymentScreen);
                   },
                   text: "Proceed Payment"),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],
@@ -115,11 +115,15 @@ class _TravelInformationState extends State<TravelInformation> {
         Container(
             height: 50,
             width: width / 2.5,
-            child: customTextField(fNameController, "First Name")),
+            child: customTextField(fNameController, "First Name","",((p0) {
+              
+            }),false)),
         Container(
             height: 50,
             width: width / 2.5,
-            child: customTextField(lNameController, "Last Name"))
+            child: customTextField(lNameController, "Last Name","",((p0) {
+              
+            }),false))
       ],
     );
   }
@@ -131,14 +135,14 @@ class _TravelInformationState extends State<TravelInformation> {
       children: [
         Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             // height: 50,
             // width: width/2.5,
-            child: Text("Upload Passport")),
+            child: const Text("Upload Passport")),
         Container(
             // height: 50,
             //  width: width/2.5,
-            padding: EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 30),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -152,7 +156,7 @@ class _TravelInformationState extends State<TravelInformation> {
                     height: 30,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 GestureDetector(
@@ -172,15 +176,15 @@ class _TravelInformationState extends State<TravelInformation> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             alignment: Alignment.center,
             // height: 50,
             //  width: width/2.5,
-            child: Text("Upload Photo")),
+            child: const Text("Upload Photo")),
         Container(
             // height: 50,
             // width: width/2.5,
-            padding: EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 30),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -192,7 +196,7 @@ class _TravelInformationState extends State<TravelInformation> {
                     height: 30,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 GestureDetector(
@@ -213,11 +217,15 @@ class _TravelInformationState extends State<TravelInformation> {
         Container(
             height: 50,
             width: width / 2.5,
-            child: customTextField(motherFNameController, "First Name")),
+            child: customTextField(motherFNameController, "First Name","",((p0) {
+              
+            }),false)),
         Container(
             height: 50,
             width: width / 2.5,
-            child: customTextField(motherLNameController, "Last Name"))
+            child: customTextField(motherLNameController, "Last Name","",((p0) {
+              
+            }),false))
       ],
     );
   }
@@ -232,19 +240,19 @@ class _TravelInformationState extends State<TravelInformation> {
       child: FormField(builder: (FormFieldState<String> state) {
         return InputDecorator(
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(8),
+                contentPadding: const EdgeInsets.all(8),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(60),
                     borderSide:
-                        BorderSide(width: 5.0, color: AppColor.secondaryColor)),
+                        const BorderSide(width: 5.0, color: AppColor.secondaryColor)),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide:
-                        BorderSide(width: 2.0, color: AppColor.secondaryColor)),
+                        const BorderSide(width: 2.0, color: AppColor.secondaryColor)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide:
-                        BorderSide(width: 3.0, color: AppColor.secondaryColor)),
+                        const BorderSide(width: 3.0, color: AppColor.secondaryColor)),
                 suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Row(
@@ -258,7 +266,7 @@ class _TravelInformationState extends State<TravelInformation> {
                               width: 30,
                               height: 30,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
@@ -271,7 +279,7 @@ class _TravelInformationState extends State<TravelInformation> {
                 hintText: hintText),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                icon: Visibility(
+                icon: const Visibility(
                   visible: false,
                   child: Icon(Icons.arrow_downward),
                 ),

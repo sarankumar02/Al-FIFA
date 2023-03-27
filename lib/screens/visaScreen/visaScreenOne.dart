@@ -37,7 +37,8 @@ class _VisaScreenOneState extends State<VisaScreenOne> {
               CustomElevatedButton( text: "Continue",
                   onTap: (){
                     Navigator.pushNamed(context, visaScreenTwo);
-                  })
+                  }),
+                  SizedBox(height: 30,)
             ],
           ),
         ),

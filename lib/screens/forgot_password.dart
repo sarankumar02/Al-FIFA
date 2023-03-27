@@ -1,28 +1,24 @@
-import 'package:al_fifa/bloc/login_bloc.dart';
+import 'package:al_fifa/bloc/forgot_bloc.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   TextEditingController? emailMobileNoCntrlr;
-  late LoginBloc loginBloc;
+  late ForgotPassswordBloc forgotPassswordBloc;
     @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loginBloc = LoginBloc();
+    forgotPassswordBloc = ForgotPassswordBloc();
   }
 
   @override
@@ -53,11 +49,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   loginText(),
                   emailPhoneWidget(),
-                  passWordWidget(),
-                  forgotPassWordText(),
+                  // passWordWidget(),
+                  // forgotPassWordText(),
                   loginButton(),
-                  dontHaveAccText(),
-                  socialLogin()
+                  // dontHaveAccText(),
+                  // socialLogin()
                 ],
               ),
             )),
@@ -77,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // ii - Login Text
   Widget loginText() {
     return const Text(
-      "Login",
+      "Forgot password",
       style: TextStyle(
           color: AppColor.primaryColor,
           fontSize: FontConstant.headingText,
@@ -90,11 +86,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
       child: StreamBuilder(
-          stream: loginBloc.email,
+          stream: forgotPassswordBloc.email,
           builder: (context, snapshot) {
             return TextField(
               // controller: emailMobileNoCntrlr,
-              onChanged: loginBloc.changeEmail,
+              onChanged: forgotPassswordBloc.changeEmail,
               decoration: InputDecoration(
                   errorText: (snapshot.error.toString() == 'null')
                       ? null
@@ -115,80 +111,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     Icons.person,
                     color: AppColor.secondaryColor,
                   ),
-                  hintText: "Email ID / Mobile no",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
+                  hintText: "Email ID / Mobile no",  hintStyle: TextStyleAlFifa.normalText),
             );
           }),
     );
   }
 
-  // iv - Password input field
-  Widget passWordWidget() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 0, bottom: 10, left: 30, right: 30),
-      child: StreamBuilder(
-          stream: loginBloc.password,
-          builder: (context, snapshot) {
-            return TextField(
-              // controller: emailMobileNoCntrlr,
-              obscureText: true,
-              onChanged: loginBloc.changePassword,
-              decoration: InputDecoration(
-                  errorText: (snapshot.error.toString() == 'null')
-                      ? null
-                      : snapshot.error.toString(),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 5.0, color: AppColor.secondaryColor)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 2.0, color: AppColor.secondaryColor)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 3.0, color: AppColor.secondaryColor)),
-                  suffixIcon: const Icon(
-                    Icons.lock,
-                    color: AppColor.secondaryColor,
-                  ),
-                  hintText: "Password",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
-            );
-          }),
-    );
-  }
 
-  // v - forgot password text
-  Widget forgotPassWordText() {
-    return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, forgotPasswordScreen);
-      },
-      child: Container(
-        padding: const EdgeInsets.only(right: 30),
-        alignment: Alignment.centerRight,
-        child: const Text(
-          "Forgot Password?",
-          style: TextStyle(fontFamily: "Tajawal-Regular",fontSize: 15),
-        ),
-      ),
-    );
-  }
+
 
   // vi - Login button
   Widget loginButton() {
     return StreamBuilder<bool>(
-        stream: loginBloc.loginValid,
+        stream: forgotPassswordBloc.forgotPasswordValid,
         builder: (context, snapshot) {
           return Container(
             padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
             width: double.infinity,
             child: ElevatedButton(
-              child: const Text("Login"),
+              child: const Text("Submit"),
               onPressed: 
                   // print("Running");
                 !snapshot.hasData
@@ -201,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     : () {
                         print(" vaild");
-                        loginBloc.loginUser(context: context);
+                        forgotPassswordBloc.forgotpassword(context: context);
                       },
 
                 // Navigator.pushReplacementNamed(context, "/homePage");

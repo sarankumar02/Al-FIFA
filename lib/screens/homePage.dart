@@ -1,4 +1,5 @@
 import 'package:al_fifa/utils/constants.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,12 +19,12 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Text(
+                  child: const Text(
                     "dummy",
                     style: TextStyle(color: AppColor.primaryColor),
                   ),
@@ -35,36 +36,99 @@ class _HomePageState extends State<HomePage> {
                     height: 150,
                   ),
                 ),
-                Container(
-                  height: 160,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 2,
-                    itemBuilder: (context, i) {
-                      return Column(
-                        children: [
-                          Card(
-                            elevation: 5,
-                            clipBehavior: Clip.antiAlias,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Image(image: AssetImage("assets/illustrations/dummy.png"),
+
+                ListView(shrinkWrap: true, children: [
+                  CarouselSlider(
+                    items: [
+                      Card(
+                          elevation: 5,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          child: const Image(
+                            image: AssetImage("assets/Images/Clip.png"),
                             width: 300,
-                            height: 150,
-                            fit: BoxFit.fill,)
-                          ),
-                          // Container(
-                          //   height: 10,
-                          //   width: 10,
-                          //   decoration: BoxDecoration(
-                          //       color: AppColor.primaryColor,
-                          //       shape: BoxShape.circle),
-                          // )
-                        ],
-                      );
-                    },
+                            // height: 50,
+                            fit: BoxFit.fill,
+                          )),
+                      Card(
+                          elevation: 5,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          child: const Image(
+                            image: AssetImage("assets/Images/Clip.png"),
+                            width: 300,
+                            // height: 50,
+                            fit: BoxFit.fill,
+                          )),
+                      Card(
+                          elevation: 5,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          child: const Image(
+                            image: AssetImage("assets/Images/Clip.png"),
+                            width: 300,
+                            // height: 50,
+                            fit: BoxFit.fill,
+                          )),
+                      Card(
+                          elevation: 5,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          child: const Image(
+                            image: AssetImage("assets/Images/Clip.png"),
+                            width: 300,
+                            // height: 50,
+                            fit: BoxFit.fill,
+                          )),
+                    ],
+                    options: CarouselOptions(
+                      height: 140.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      viewportFraction: 0.8,
+                    ),
                   ),
-                ),
+                ]),
+
+                // Container(
+                //   height: 160,
+                //   child: ListView.builder(
+                //     scrollDirection: Axis.horizontal,
+                //     itemCount: 2,
+                //     itemBuilder: (context, i) {
+                //       return Column(
+                //         children: [
+                //           Card(
+                //             elevation: 5,
+                //             clipBehavior: Clip.antiAlias,
+                //             shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(20)),
+                //             child: Image(image: AssetImage("assets/illustrations/dummy.png"),
+                //             width: 300,
+                //             height: 150,
+                //             fit: BoxFit.fill,)
+                //           ),
+                //           // Container(
+                //           //   height: 10,
+                //           //   width: 10,
+                //           //   decoration: BoxDecoration(
+                //           //       color: AppColor.primaryColor,
+                //           //       shape: BoxShape.circle),
+                //           // )
+                //         ],
+                //       );
+                //     },
+                //   ),
+                // ),
                 // Container(
                 //   height: 10,
                 //   child: ListView.builder(
@@ -81,96 +145,132 @@ class _HomePageState extends State<HomePage> {
                 //     },
                 //   ),
                 // ),
-
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {
+                        Navigator.pushNamed(context, passport);
+                      },
                       child: Column(
-                        children: [
-                          Image(image: AssetImage("assets/illustrations/passport.png"),
-                            width: 100,),
-                          Text("Passport & \nrelated services")
+                        children: const [
+                          Image(
+                            image:
+                                AssetImage("assets/illustrations/passport.png"),
+                            width: 100,
+                          ),
+                          Text(
+                            "Passport & \nrelated services",
+                            style: TextStyle(
+                                fontFamily: "Tajawal-Bold",
+                                color: AppColor.lightblackColor),
+                          )
                         ],
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pushNamed(context, visaScreenOne);
                       },
                       child: Column(
-                        children: [
-                          Image(image: AssetImage("assets/illustrations/visa.png"),
-                            width: 100,),
-                          Text("Visa \n ")
+                        children: const [
+                          Image(
+                            image: AssetImage(
+                              "assets/illustrations/visa.png",
+                            ),
+                            width: 100,
+                          ),
+                          Text(
+                            "Visa \n ",
+                            style: TextStyle(
+                                fontFamily: "Tajawal-Bold",
+                                color: AppColor.lightblackColor),
+                          )
                         ],
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: Column(
-                        children: [
-                          Image(image: AssetImage("assets/illustrations/travel packages.png"),
-                            width: 100,),
-                          Text("Packages Stay &\nTravel")
+                        children: const [
+                          Image(
+                            image: AssetImage(
+                                "assets/illustrations/travel packages.png"),
+                            width: 100,
+                          ),
+                          Text(
+                            "Packages Stay &\nTravel",
+                            style: TextStyle(
+                                fontFamily: "Tajawal-Bold",
+                                color: AppColor.lightblackColor),
+                          )
                         ],
                       ),
                     )
                   ],
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 GestureDetector(
-                onTap: (){},
-                child: Container(
-                  height: 250,
-                  child: ListView.builder(
-                    itemCount: 2,
-                    scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, i){
-                        return
-                          Stack(
-                            alignment: AlignmentDirectional.topStart,
-                            children: [
-                              Card(
-                            elevation: 5,
-                            clipBehavior: Clip.antiAlias,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Image(image: AssetImage("assets/illustrations/dummy.png"),
-                            width: 300,
-                            fit: BoxFit.fill,),
-
-                        ),
-                              Container(
-
-                                alignment: Alignment.bottomLeft,
-                                padding: EdgeInsets.only(left: 20,
-                                    bottom: 20,top: 150),
-
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image(image: AssetImage("assets/Icons/other services.png"), width: 30,height: 30,),
-                                    Text("Other Services", style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.white
-                                    ),),
-                                    Text("International driving ",
+                  onTap: () {
+                    Navigator.pushNamed(context, otherServices);
+                  },
+                  child: Container(
+                    height: 250,
+                    child: ListView.builder(
+                        itemCount: 2,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, i) {
+                          return Stack(
+                              alignment: AlignmentDirectional.topStart,
+                              children: [
+                                Card(
+                                  elevation: 5,
+                                  clipBehavior: Clip.antiAlias,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: const Image(
+                                    image:
+                                        AssetImage("assets/Images/person.jpg"),
+                                    width: 320,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: const EdgeInsets.only(
+                                      left: 20, bottom: 20, top: 150),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Image(
+                                        image: AssetImage(
+                                            "assets/Icons/other services.png"),
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      Text(
+                                        "Other Services",
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.white
-                                        ))
-                                  ],
+                                            color: Colors.white),
+                                      ),
+                                      Text("International driving ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.white))
+                                    ],
+                                  ),
                                 ),
-                              ),
-                        ]
-                          );
-                      }),
-                ),
+                              ]);
+                        }),
                   ),
-
-
+                ),
               ],
             ),
           ),

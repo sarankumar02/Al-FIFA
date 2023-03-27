@@ -14,13 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int pageIndex = 0;
 
   final pages = [
-    HomePage(),
+    const HomePage(),
     MyRequestScreen(),
-    VisaScreenOne()
+    const VisaScreenOne()
 
     //drawer()
     // MenuScreen()
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Container bottomNavbar(BuildContext context) {
     return Container(
       height: 80,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: AppColor.secondaryColor,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
@@ -51,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 pageIndex == 0
@@ -71,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     color: pageIndex == 0
                         ? AppColor.primaryColor
-                        : AppColor.blackColor,
+                        : AppColor.lightblackColor,
                   ),
                 ),
                 Container(
@@ -81,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 0
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -95,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 pageIndex == 1
@@ -115,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                       color: pageIndex == 1
                           ? AppColor.primaryColor
-                          : AppColor.blackColor),
+                          : AppColor.lightblackColor),
                 ),
                 Container(
                   height: 10,
@@ -124,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 1
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -138,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 pageIndex == 2
@@ -157,15 +156,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                         color: pageIndex == 2
                             ? AppColor.primaryColor
-                            : AppColor.blackColor)),
+                            : AppColor.lightblackColor)),
                 Container(
                   height: 10,
                   width: 10,
                   decoration: BoxDecoration(
                       color: pageIndex == 2
                           ? AppColor.primaryColor
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                          : AppColor.lightblackColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -180,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 pageIndex == 3
@@ -199,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                         color: pageIndex == 3
                             ? AppColor.primaryColor
-                            : AppColor.blackColor)),
+                            : AppColor.lightblackColor)),
                 Container(
                   alignment: Alignment.bottomCenter,
                   height: 10,
@@ -208,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 3
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -218,129 +217,167 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
-
-  Future _showModelBottomSheet(){
-    return   showModalBottomSheet(
+  Future _showModelBottomSheet() {
+    return showModalBottomSheet(
       context: context,
       barrierColor: Colors.transparent,
       backgroundColor: Colors.white,
-
       elevation: 10,
       useRootNavigator: true,
       isScrollControlled: true,
-
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       builder: (BuildContext context) {
         // UDE : SizedBox instead of Container for whitespaces
         return Container(
-
-          padding: EdgeInsets.only(top: 16.0),
+          padding: const EdgeInsets.only(top: 16.0),
           height: 600,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children:  <Widget>[
+            children: <Widget>[
               GestureDetector(
-                onTap: (){
-Navigator.pushNamed(context, myProfileScreen);
+                onTap: () {
+                  Navigator.pushNamed(context, myProfileScreen);
                 },
                 child: ListTile(
-                  title: Text("My Profile",
-                    style: TextStyleAlFifa.text,),
-                  leading: Image.asset("assets/Icons/user.png",
+                  title: const Text(
+                    "My Profile",
+                    style: TextStyleAlFifa.text,
+                  ),
+                  leading: Image.asset(
+                    "assets/Icons/user.png",
                     width: 30,
-                    height: 30,),
+                    height: 30,
+                  ),
                 ),
               ),
               GestureDetector(
-                  onTap: (){
+                onTap: () {
+                  Navigator.pushNamed(context, resetPasswordScreen);
+                },
+                child: ListTile(
+                  title: const Text(
+                    "Reset password",
+                    style: TextStyleAlFifa.text,
+                  ),
+                  leading: Image.asset(
+                    "assets/Icons/user.png",
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                  onTap: () {
 
+                        Navigator.pushReplacementNamed(context,aboutUS);
                   },
                   child: ListTile(
-                    title: Text("About Us",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/about us.png",
+                    title: const Text(
+                      "About Us",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/about us.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context,contactus);
                   },
                   child: ListTile(
-                    title: Text("Contact Us",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/call.png",
+                    title: const Text(
+                      "Contact Us",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/call.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: ListTile(
-                    title: Text("FAQ's",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/faqs.png",
+                    title: const Text(
+                      "FAQ's",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/faqs.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: ListTile(
-                    title: Text("Notifications",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/notifications.png",
+                    title: const Text(
+                      "Notifications",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/notifications.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: ListTile(
-                    title: Text("Help",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/help.png",
+                    title: const Text(
+                      "Help",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/help.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: ListTile(
-                    title: Text("Term's & Conditions",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/my request.png",
+                    title: const Text(
+                      "Term's & Conditions",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/my request.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: ListTile(
-                    title: Text("Privacy Policy",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/lock.png",
+                    title: const Text(
+                      "Privacy Policy",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/lock.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   )),
               GestureDetector(
-                  onTap: (){
-
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, "/loginPage");
                   },
                   child: ListTile(
-                    title: Text("Logout",
-                      style: TextStyleAlFifa.text,),
-                    leading: Image.asset("assets/Icons/logout.png",
+                    title: const Text(
+                      "Logout",
+                      style: TextStyleAlFifa.text,
+                    ),
+                    leading: Image.asset(
+                      "assets/Icons/logout.png",
                       width: 30,
-                      height: 30,),
+                      height: 30,
+                    ),
                   ))
             ],
           ),
@@ -348,6 +385,4 @@ Navigator.pushNamed(context, myProfileScreen);
       },
     );
   }
-
-
 }
