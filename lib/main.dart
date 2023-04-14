@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:al_fifa/app_localization.dart';
@@ -17,15 +15,18 @@ import 'package:al_fifa/utils/pageRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-class MyHttpOverrides extends HttpOverrides{
+
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient( context){
+  HttpClient createHttpClient(context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
+
 void main() {
-   HttpOverrides.global = new MyHttpOverrides();
+  HttpOverrides.global = new MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -38,14 +39,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       Provider<SettingsBloc>(
         create: (_) => SettingsBloc(),
-       
       ),
-       Provider<AuthBloc>(create: (_) => AuthBloc()),
-            Provider<LoginBloc>(create: (_) => LoginBloc()),
-            Provider<UserDetailsBloc>(create: (_) => UserDetailsBloc()),
-            Provider<ResetPassswordBloc>(create: (_) => ResetPassswordBloc()),
-            Provider<PassportBloc>(create: (_) => PassportBloc()),
-            Provider<OtherServicesBloc>(create: (_) => OtherServicesBloc()),
+      Provider<AuthBloc>(create: (_) => AuthBloc()),
+      Provider<LoginBloc>(create: (_) => LoginBloc()),
+      Provider<UserDetailsBloc>(create: (_) => UserDetailsBloc()),
+      Provider<ResetPassswordBloc>(create: (_) => ResetPassswordBloc()),
+      Provider<PassportBloc>(create: (_) => PassportBloc()),
+      Provider<OtherServicesBloc>(create: (_) => OtherServicesBloc()),
     ], child: const MyWidget());
   }
 }
@@ -60,10 +60,12 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   late SettingsBloc settingsBloc;
 
+ 
+
   @override
   Widget build(BuildContext context) {
-    settingsBloc = Provider.of<SettingsBloc>(context);
 
+    settingsBloc=Provider.of<SettingsBloc>(context);
     return StreamBuilder(
         stream: settingsBloc.language,
         builder: (context, AsyncSnapshot snapshot) {
@@ -72,7 +74,6 @@ class _MyWidgetState extends State<MyWidget> {
               Locale('ar', 'AR'),
               Locale('en', 'US'),
             ],
-            
             localizationsDelegates: const [
               DemoLocalizationsDelegate(),
               GlobalCupertinoLocalizations.delegate,

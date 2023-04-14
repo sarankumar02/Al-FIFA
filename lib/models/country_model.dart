@@ -40,22 +40,25 @@ class CountrylistModel {
 
 class Countrylist {
     Countrylist({
+           this.countryId,
          this.countryname,
          this.countryimage,
          this.createdat,
     });
-
+    String? countryId;
     String? countryname;
     String? countryimage;
     DateTime? createdat;
 
     factory Countrylist.fromJson(Map<String, dynamic> json) => Countrylist(
+        countryId: json["countryId"]??"",
         countryname: json["countryname"]??"",
         countryimage: json["countryimage"]??"",
         createdat: DateTime.parse(json["createdat"]??""),
     );
 
     Map<String, dynamic> toJson() => {
+        "countryId": countryId,
         "countryname": countryname,
         "countryimage": countryimage,
         "createdat": createdat!.toIso8601String(),

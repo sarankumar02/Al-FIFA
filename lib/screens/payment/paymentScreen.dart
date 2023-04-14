@@ -1,10 +1,15 @@
+import 'package:al_fifa/bloc/visa_bloc.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen(
+      {Key? key, required this.visaBloc, required this.pageController})
+      : super(key: key);
+  final VisaBloc visaBloc;
+  final PageController pageController;
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -17,40 +22,50 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: SingleChildScrollView(
+    return WillPopScope(
+      onWillPop: () async {
+        widget.pageController.animateToPage(3,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+        return false;
+      },
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 40,
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-              child: CustomAppBar(context, "Payment Methods"),
+              child: CustomAppBar(context, "Payment Methods", onTap: () {
+                widget.pageController.animateToPage(3,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn);
+              }),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(top: 8, left: 30, right: 20),
-              child: Text(
+              padding: const EdgeInsets.only(top: 8, left: 30, right: 20),
+              child: const Text(
                 "Choose Payment Method",
                 style: TextStyleAlFifa.text,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             checkBoxOne("PayPal.svg.png"),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             checkBoxTwo("paytabs.png"),
             SizedBox(
               height: height / 2,
             ),
-            CustomElevatedButton(onTap: () {}, text: "Confirm")
+            CustomElevatedButton(
+                onTap: () {
+                  widget.visaBloc.visasubmit(context: context);
+                },
+                text: "Confirm")
           ],
         ),
       ),
@@ -64,7 +79,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             value: this.payPalvalue,
             onChanged: (bool? value) {
               setState(() {
@@ -75,7 +90,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 8, left: 30, right: 20),
+            padding: const EdgeInsets.only(top: 8, left: 30, right: 20),
             child: Image.asset(
               "assets/Logos/$image",
               width: 100,
@@ -91,7 +106,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             value: this.payTabvalue,
             onChanged: (bool? value) {
               setState(() {
@@ -102,7 +117,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 8, left: 30, right: 20),
+            padding: const EdgeInsets.only(top: 8, left: 30, right: 20),
             child: Image.asset(
               "assets/Logos/$image",
               width: 100,

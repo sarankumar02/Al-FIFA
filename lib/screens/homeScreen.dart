@@ -1,10 +1,14 @@
+import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/screens/homePage.dart';
 import 'package:al_fifa/screens/myRequest/myRequest.dart';
 
 import 'package:al_fifa/screens/screenOne.dart';
+import 'package:al_fifa/screens/visaScreen/visa.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenOne.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,11 +19,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int pageIndex = 0;
+  late SettingsBloc settingsBloc;
+  @override
+  void initState() {
+    settingsBloc = SettingsBloc();
+    Future.delayed(const Duration(milliseconds: 100),
+        () => {settingsBloc.changeUserLogin()});
+    super.initState();
+  }
 
   final pages = [
     const HomePage(),
     MyRequestScreen(),
-    const VisaScreenOne()
+    const Visa(
+      backButton: false,
+    )
 
     //drawer()
     // MenuScreen()
@@ -80,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 0
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: const BorderRadius.all(Radius.circular(10))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -123,7 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 1
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: const BorderRadius.all(Radius.circular(10))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -164,7 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 2
                           ? AppColor.primaryColor
                           : AppColor.lightblackColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(10))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -173,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               setState(() {
                 // pageIndex = 3;
-                _showModelBottomSheet();
+                _showModelBottomSheet(settingsBloc);
               });
             },
             child: Column(
@@ -207,7 +224,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: pageIndex == 3
                           ? AppColor.primaryColor
                           : Colors.transparent,
-                      borderRadius: const BorderRadius.all(Radius.circular(10))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
                 )
               ],
             ),
@@ -217,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future _showModelBottomSheet() {
+  Future _showModelBottomSheet(SettingsBloc settingsBloc) {
     return showModalBottomSheet(
       context: context,
       barrierColor: Colors.transparent,
@@ -230,159 +248,209 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       builder: (BuildContext context) {
         // UDE : SizedBox instead of Container for whitespaces
-        return Container(
-          padding: const EdgeInsets.only(top: 16.0),
-          height: 600,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, myProfileScreen);
-                },
-                child: ListTile(
-                  title: const Text(
-                    "My Profile",
-                    style: TextStyleAlFifa.text,
-                  ),
-                  leading: Image.asset(
-                    "assets/Icons/user.png",
-                    width: 30,
-                    height: 30,
-                  ),
+        return StreamBuilder<bool>(
+            stream: settingsBloc.userLogin,
+            builder: (context, loggedIn) {
+              return Container(
+                padding: const EdgeInsets.only(top: 16.0),
+                height: 600,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    if (loggedIn.data == true)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, myProfileScreen);
+                        },
+                        child: ListTile(
+                          title: const Text(
+                            "My Profile",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/user.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        ),
+                      ),
+                    if (loggedIn.data == true)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, resetPasswordScreen);
+                        },
+                        child: ListTile(
+                          title: const Text(
+                            "Reset password",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/user.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        ),
+                      ),
+                    GestureDetector(
+                        onTap: () {
+                      
+                          Navigator.pushReplacementNamed(context, aboutUS);
+                        },
+                        child: ListTile(
+                          title: const Text(
+                            "About Us",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/about us.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, contactus);
+                        },
+                        child: ListTile(
+                          title: const Text(
+                            "Contact Us",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/call.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                          title: const Text(
+                            "FAQ's",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/faqs.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                          title: const Text(
+                            "Notifications",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/notifications.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                          title: const Text(
+                            "Help",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/help.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                          title: const Text(
+                            "Term's & Conditions",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/my request.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                          title: const Text(
+                            "Privacy Policy",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/lock.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        )),
+                    GestureDetector(
+                        onTap: () async {
+                          loggedIn.data == false
+                              ? Navigator.pushReplacementNamed(
+                                  context, "/loginPage")
+                              : showDialog<void>(
+                                  context: context,
+                                  barrierDismissible:
+                                      false, // user must tap button!
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      // <-- SEE HERE
+                                      title: const Text('Are you sure'),
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: const <Widget>[
+                                            Text('Do you want Logout ?'),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('No'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: const Text('Yes'),
+                                          onPressed: () async {
+                                            SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            prefs.setString("userEmailId", "");
+                                            prefs.setBool("LoggedIn", false);
+                                            settingsBloc.changeUserLogin();
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.pushReplacementNamed(
+                                                context, "/loginPage");
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            loggedIn.data == false ? "Login" : "Logout",
+                            style: TextStyleAlFifa.text,
+                          ),
+                          leading: Image.asset(
+                            "assets/Icons/logout.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                        ))
+                  ],
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, resetPasswordScreen);
-                },
-                child: ListTile(
-                  title: const Text(
-                    "Reset password",
-                    style: TextStyleAlFifa.text,
-                  ),
-                  leading: Image.asset(
-                    "assets/Icons/user.png",
-                    width: 30,
-                    height: 30,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                  onTap: () {
-
-                        Navigator.pushReplacementNamed(context,aboutUS);
-                  },
-                  child: ListTile(
-                    title: const Text(
-                      "About Us",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/about us.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context,contactus);
-                  },
-                  child: ListTile(
-                    title: const Text(
-                      "Contact Us",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/call.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {},
-                  child: ListTile(
-                    title: const Text(
-                      "FAQ's",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/faqs.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {},
-                  child: ListTile(
-                    title: const Text(
-                      "Notifications",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/notifications.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {},
-                  child: ListTile(
-                    title: const Text(
-                      "Help",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/help.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {},
-                  child: ListTile(
-                    title: const Text(
-                      "Term's & Conditions",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/my request.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {},
-                  child: ListTile(
-                    title: const Text(
-                      "Privacy Policy",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/lock.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, "/loginPage");
-                  },
-                  child: ListTile(
-                    title: const Text(
-                      "Logout",
-                      style: TextStyleAlFifa.text,
-                    ),
-                    leading: Image.asset(
-                      "assets/Icons/logout.png",
-                      width: 30,
-                      height: 30,
-                    ),
-                  ))
-            ],
-          ),
-        );
+              );
+            });
       },
     );
   }
 }
+
+// --- Button Widget --- //

@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 class AuthApiProvider {
   Future<RegisterModelResponse> registerUser({required Map body}) async {
     try {
-      String url = AppConstants.BASE_URL + "register.php";
+      String url = "${AppConstants.BASE_URL}register.php";
 
       final response = await http.post(Uri.parse(url),
           headers: {
@@ -20,7 +20,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       print(responseBody);
       if (response.statusCode == 200 &&
@@ -44,7 +44,7 @@ class AuthApiProvider {
 
   Future<LoginModelResponse> loginUser({required Map body}) async {
     try {
-      String url = AppConstants.BASE_URL + "login.php";
+      String url = "${AppConstants.BASE_URL}login.php";
       final response = await http.post(Uri.parse(url),
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       print(responseBody);
       if (response.statusCode == 200 &&
@@ -75,7 +75,7 @@ class AuthApiProvider {
 
   Future<ForgotPasswordResponse> forgotUserPassword({required Map body}) async {
     try {
-      String url = AppConstants.BASE_URL + "forgot_password.php";
+      String url = "${AppConstants.BASE_URL}forgot_password.php";
 
       final response = await http.post(Uri.parse(url),
           headers: {
@@ -84,7 +84,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       print(responseBody);
       if (response.statusCode == 200 &&
@@ -107,7 +107,7 @@ class AuthApiProvider {
 
   Future<UserDetailsModelResponse> userDetails({required Map body}) async {
     try {
-      String url = AppConstants.BASE_URL + "profile.php";
+      String url = "${AppConstants.BASE_URL}profile.php";
 
       final response = await http.post(Uri.parse(url),
           headers: {
@@ -116,7 +116,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       if (response.statusCode == 200 &&
           responseBody.containsKey("success") &&
@@ -148,7 +148,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       if (response.statusCode == 200 &&
           responseBody.containsKey("success_msg") &&
@@ -178,7 +178,7 @@ class AuthApiProvider {
           },
           body: jsonEncode(body));
       // print(response.);
-      print(response.body.toString() + "ressppponon");
+      print("${response.body}ressppponon");
       var responseBody = jsonDecode(response.body);
       print(responseBody);
       if (response.statusCode == 200 &&

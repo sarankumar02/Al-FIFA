@@ -1,4 +1,5 @@
 import 'package:al_fifa/bloc/login_bloc.dart';
+import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -18,7 +19,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController? emailMobileNoCntrlr;
   late LoginBloc loginBloc;
-    @override
+  late SettingsBloc settingsBloc;
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -28,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     // loginBloc = Provider.of<LoginBloc>(context);
+    settingsBloc = Provider.of<SettingsBloc>(context);
     return Scaffold(
       body: LoaderOverlay(
         useDefaultLoading: false,
@@ -116,8 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: AppColor.secondaryColor,
                   ),
                   hintText: "Email ID / Mobile no",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
+                  hintStyle: TextStyleAlFifa.normalText),
             );
           }),
     );
@@ -155,8 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: AppColor.secondaryColor,
                   ),
                   hintText: "Password",
-                  hintStyle: TextStyleAlFifa.normalText
-                  ),
+                  hintStyle: TextStyleAlFifa.normalText),
             );
           }),
     );
@@ -165,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // v - forgot password text
   Widget forgotPassWordText() {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, forgotPasswordScreen);
       },
       child: Container(
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
         alignment: Alignment.centerRight,
         child: const Text(
           "Forgot Password?",
-          style: TextStyle(fontFamily: "Tajawal-Regular",fontSize: 15),
+          style: TextStyle(fontFamily: "Tajawal-Regular", fontSize: 15),
         ),
       ),
     );
@@ -188,24 +189,24 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
             width: double.infinity,
             child: ElevatedButton(
-              child: const Text("Login"),
-              onPressed: 
+              onPressed:
                   // print("Running");
-                !snapshot.hasData
-                    ? () {
-                      print("not vaild");
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text(AppConstants.pleaseFillAllFields)));
-                      }
-                    : () {
-                        print(" vaild");
-                        loginBloc.loginUser(context: context);
-                      },
+                  !snapshot.hasData
+                      ? () {
+                 
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text(AppConstants.pleaseFillAllFields)));
+                        }
+                      : () {
+             
+                          loginBloc.loginUser(
+                              context: context, settingsBloc: settingsBloc);
+                        },
 
-                // Navigator.pushReplacementNamed(context, "/homePage");
-              
+              // Navigator.pushReplacementNamed(context, "/homePage");
+
               style: ElevatedButton.styleFrom(
                   primary: AppColor.secondaryColor,
                   onPrimary: Colors.white,
@@ -215,6 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       left: 30.0, right: 30.0, top: 15.0, bottom: 15.0),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)))),
+              child: const Text("Login"),
             ),
           );
         });

@@ -4,6 +4,7 @@ import 'package:al_fifa/Widgets/custom_loader.dart';
 import 'package:al_fifa/models/country_model.dart';
 import 'package:al_fifa/repository/auth_repo.dart';
 import 'package:al_fifa/repository/passport_repo.dart';
+import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -40,7 +41,7 @@ class PassportBloc {
       _mobileNumber.stream.transform(validateMobile);
   Stream<String> get email => _email.stream.transform(validateEmail);
   Stream<bool> get passportValid => Rx.defer(
-      () => Rx.combineLatest([email,mobileNumber,email], (values) {
+      () => Rx.combineLatest([email, mobileNumber, email], (values) {
             return true;
           }),
       reusable: true);
@@ -112,10 +113,12 @@ class PassportBloc {
     body = {
       "services": _selectedIDType.value["id"],
       "quantity": _quantity.value["id"],
-      "country": _selectedCountryIndex.value,
+      "country": _selectedNationality.value.countryId,
       "applicant_name": _applicantName.value,
       "mobile": _mobileNumber.value,
-      "email": _email.value
+      "email": _email.value,
+      "usertype": "guest",
+      "created_by": "0"
     };
 
     print(body);
@@ -131,7 +134,16 @@ class PassportBloc {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(response.passportSubmitModel!.message!)));
     if (response.passportSubmitModel!.successMsg == 1) {
-      Navigator.pushReplacementNamed(context, passportThankyou);
+      // Navigator.pushReplacementNamed(context, passportThankyou);
+       // ignore: use_build_context_synchronously
+       Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) {
+          return  PassportThankyou(
+            title: "PassPort",
+            message: response.passportSubmitModel!.message!.toString(),
+          );
+        },
+      ));
     }
   }
 }

@@ -1,6 +1,9 @@
+import 'package:al_fifa/bloc/settings_bloc.dart';
+import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,8 +13,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late SettingsBloc settingsBloc;
+  @override
+  void initState() {
+    settingsBloc=SettingsBloc();
+     
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -25,16 +36,14 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: const Text(
-                    "dummy",
+                    "arabic",
                     style: TextStyle(color: AppColor.primaryColor),
                   ),
                 ),
-                Container(
-                  child: Image.asset(
-                    "assets/Logos/Alfifa logo.png",
-                    width: 150,
-                    height: 150,
-                  ),
+                Image.asset(
+                  "assets/Logos/Alfifa logo.png",
+                  width: 150,
+                  height: 150,
                 ),
 
                 ListView(shrinkWrap: true, children: [
@@ -93,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                       autoPlayCurve: Curves.fastOutSlowIn,
                       enableInfiniteScroll: true,
                       autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
+                          const Duration(seconds: 1),
                       viewportFraction: 0.8,
                     ),
                   ),
@@ -145,15 +154,23 @@ class _HomePageState extends State<HomePage> {
                 //     },
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, passport);
+                      onTap: () async {
+                        var internetConntion =
+                            await settingsBloc.checkInternetConnection();
+                        internetConntion
+                            ? Navigator.pushNamed(context, passport)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        AppConstants.pleaseCheckInternet)));
+                        ;
                       },
                       child: Column(
                         children: const [
@@ -172,8 +189,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, visaScreenOne);
+                      onTap: () async {
+                        var internetConntion =
+                            await settingsBloc.checkInternetConnection();
+                        internetConntion
+                            ? Navigator.pushNamed(context, visaScreenOne)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        AppConstants.pleaseCheckInternet)));
                       },
                       child: Column(
                         children: const [
@@ -192,23 +216,36 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Column(
-                        children: const [
-                          Image(
-                            image: AssetImage(
-                                "assets/illustrations/travel packages.png"),
-                            width: 100,
+                    StreamBuilder<bool>(
+                      stream: settingsBloc.userLogin,
+                      builder: (context, snapshot) {
+                        return GestureDetector(
+                          onTap: () {
+                            // settingsBloc.changeUserLogin();
+                            print(snapshot.data);
+                            // Navigator.pushReplacement(context, MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return const PassportThankyou(title: "mff",message: "dmm",);
+                            //   },
+                            // ));
+                          },
+                          child: Column(
+                            children: const [
+                              Image(
+                                image: AssetImage(
+                                    "assets/illustrations/travel packages.png"),
+                                width: 100,
+                              ),
+                              Text(
+                                "Packages Stay &\nTravel",
+                                style: TextStyle(
+                                    fontFamily: "Tajawal-Bold",
+                                    color: AppColor.lightblackColor),
+                              )
+                            ],
                           ),
-                          Text(
-                            "Packages Stay &\nTravel",
-                            style: TextStyle(
-                                fontFamily: "Tajawal-Bold",
-                                color: AppColor.lightblackColor),
-                          )
-                        ],
-                      ),
+                        );
+                      }
                     )
                   ],
                 ),
@@ -216,8 +253,15 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, otherServices);
+                  onTap: () async {
+                    var internetConntion =
+                        await settingsBloc.checkInternetConnection();
+                    internetConntion
+                        ? Navigator.pushNamed(context, otherServices)
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text(AppConstants.pleaseCheckInternet)));
                   },
                   child: Container(
                     height: 250,

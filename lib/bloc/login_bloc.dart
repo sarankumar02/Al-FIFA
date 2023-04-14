@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:al_fifa/Widgets/custom_loader.dart';
+import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/repository/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -43,8 +44,10 @@ class LoginBloc {
     }
   });
 
-  Future loginUser({required BuildContext context}) async {
-    Map body = {"email":_email.value, "password": _password.value};
+  Future loginUser(
+      {required BuildContext context,
+      required SettingsBloc settingsBloc}) async {
+    Map body = {"email": _email.value, "password": _password.value};
     print("Body----" + body.toString());
     context.loaderOverlay.show(widget: customLoader());
     var response = await _authRepo.loginUser(body: body);
@@ -55,13 +58,12 @@ class LoginBloc {
         SnackBar(content: Text(response.loginResponse!.message!)));
     if (response.loginResponse!.success == 1) {
       SharedPreferences _prefs = await SharedPreferences.getInstance();
-           Navigator.pushReplacementNamed(context, "/homePage");
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, "/homePage");
       // _prefs.setString("contactid", (response.loginResponse!.contactId!));
       _prefs.setString("userEmailId", (_email.value.trim()));
       _prefs.setBool("LoggedIn", true);
-      // print(response.loginResponse!.contactId!);
-      // Navigator.of(context).pushReplacement(
-      //     MaterialPageRoute(builder: (context) => const CustomDrawer()));
+      settingsBloc.changeUserLogin();
     }
   }
 }

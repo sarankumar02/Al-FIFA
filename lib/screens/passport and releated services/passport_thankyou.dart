@@ -8,7 +8,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class PassportThankyou extends StatefulWidget {
-  const PassportThankyou({super.key});
+  final String? title;
+  final String? message;
+  const PassportThankyou({super.key,  this.title,  this.message});
 
   @override
   State<PassportThankyou> createState() => _PassportThankyouState();
@@ -24,7 +26,7 @@ class _PassportThankyouState extends State<PassportThankyou> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAppBar(context, "Passport"),
+            CustomAppBar(context, widget.title!),
             SizedBox(height: 50,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 60,vertical: 70),
@@ -47,7 +49,8 @@ class _PassportThankyouState extends State<PassportThankyou> {
                     height: 20,
                   ),
                   Text(
-                    "Your request has been successfully submitted. We will contact you soon.",
+                    widget.message!,
+                    // "Your request has been successfully submitted. We will contact you soon.",
                     style: customBRCobaneTextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,

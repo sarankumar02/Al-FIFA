@@ -1,4 +1,5 @@
 import 'package:al_fifa/bloc/reset_bloc.dart';
+import 'package:al_fifa/bloc/visa_bloc.dart';
 import 'package:al_fifa/screens/about_us.dart';
 import 'package:al_fifa/screens/contact_us.dart';
 import 'package:al_fifa/screens/forgot_password.dart';
@@ -14,6 +15,7 @@ import 'package:al_fifa/screens/registerScreen.dart';
 import 'package:al_fifa/screens/reset_password.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
 import 'package:al_fifa/screens/travelInformation/travelInformation.dart';
+import 'package:al_fifa/screens/visaScreen/visa.dart';
 import 'package:al_fifa/screens/visaScreen/visaRequest.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenOne.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenTwo.dart';
@@ -25,43 +27,35 @@ class FifaRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashScreen:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case loginScreen:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case registerScreen:
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case homeScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case visaScreenOne:
-        return MaterialPageRoute(builder: (_) => VisaScreenOne());
-      case visaScreenTwo:
-        return MaterialPageRoute(builder: (_) => VisaScreenTwo());
-      case visaRequest:
-        return MaterialPageRoute(builder: (_) => VisaRequestScreen());
-      case travelInformation:
-        return MaterialPageRoute(builder: (_) => TravelInformation());
-      case paymentScreen:
-        return MaterialPageRoute(builder: (_) => PaymentScreen());
+        return MaterialPageRoute(builder: (_) => const Visa());
       case cameraScreen:
-        return MaterialPageRoute(builder: (_) => CameraExampleHome());
+        return MaterialPageRoute(builder: (_) => const CameraExampleHome());
       case myRequestScreen:
         return MaterialPageRoute(builder: (_) => MyRequestScreen());
       case myProfileScreen:
-        return MaterialPageRoute(builder: (_) => MyProfile());
+        return MaterialPageRoute(builder: (_) => const MyProfile());
       case forgotPasswordScreen:
-        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
       case resetPasswordScreen:
-        return MaterialPageRoute(builder: (_) => ResetPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case passport:
-        return MaterialPageRoute(builder: (_) => Passport());
+        return MaterialPageRoute(builder: (_) => const Passport());
       case passportThankyou:
-        return MaterialPageRoute(builder: (_) => PassportThankyou());
+        return MaterialPageRoute(builder: (_) => const PassportThankyou());
       case contactus:
-        return MaterialPageRoute(builder: (_) => ContactUS());
+        return MaterialPageRoute(builder: (_) => const ContactUS());
       case aboutUS:
-        return MaterialPageRoute(builder: (_) => AboutUS());
+        return MaterialPageRoute(builder: (_) => const AboutUS());
       case otherServices:
-        return MaterialPageRoute(builder: (_) => OtherServices());
+        return MaterialPageRoute(builder: (_) => const OtherServices());
 
       default:
         return  MaterialPageRoute(

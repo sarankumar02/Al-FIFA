@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/main.dart';
 import 'package:flutter/material.dart';
 
@@ -11,34 +12,30 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-  Timer? _timer;
+  late SettingsBloc settingsBloc;
   @override
   void initState() {
-   _timer =  Timer(
-        Duration(seconds: 5),
-        () => Navigator.pushReplacementNamed(context, "/homePage")
-        
-    );
-    // TODO: implement initState
+    settingsBloc = SettingsBloc();
+    Future.delayed(
+        const Duration(seconds: 4),
+        () => {
+              settingsBloc.changeUserLogin(),
+              Navigator.pushReplacementNamed(context, "/homePage")
+            });
     super.initState();
   }
 
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _timer!.cancel();
-    super.dispose();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset("assets/Logos/Alfifa logo.png",
-        width: 200,
-        height: 200,),
+        child: Image.asset(
+          "assets/Logos/Alfifa logo.png",
+          width: 200,
+          height: 200,
+        ),
       ),
     );
   }

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../bloc/settings_bloc.dart';
 
 class CustomTextField extends StatefulWidget {
-
   final String name;
   final String? errorText;
   final TextEditingController? controller;
@@ -14,6 +13,7 @@ class CustomTextField extends StatefulWidget {
   final Function()? togglePasswordView;
   final InkWell? suffix;
   final bool textpaste;
+  final bool keyboardTypeNumber;
 
   final bool readOnly;
   final bool isHidden;
@@ -21,7 +21,6 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField(
       {Key? key,
-    
       required this.name,
       this.onchanged,
       this.errorText,
@@ -31,7 +30,8 @@ class CustomTextField extends StatefulWidget {
       this.obscureText = false,
       this.isHidden = false,
       this.textpaste = true,
-      this.suffix})
+      this.suffix,
+       this.keyboardTypeNumber=false})
       : super(key: key);
 
   @override
@@ -51,6 +51,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                keyboardType: widget.keyboardTypeNumber
+                    ? TextInputType.number
+                    : TextInputType.text,
                 toolbarOptions: ToolbarOptions(
                   paste: widget.textpaste,
                 ),
@@ -61,29 +64,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 textAlign: TextAlign.start,
                 readOnly: widget.readOnly,
                 style: customBRCobaneTextStyle(
-                  fontSize: 16,
-                  
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.blackColor
-                ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.blackColor),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 30.0,top: 23,bottom: 23),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 3.0, color: AppColor.secondaryColor)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 2.0, color: AppColor.secondaryColor)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(
-                          width: 3.0, color: AppColor.secondaryColor)),
-                  hintText: widget.name,
+                    contentPadding:
+                        const EdgeInsets.only(left: 30.0, top: 23, bottom: 23),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                            width: 3.0, color: AppColor.secondaryColor)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                            width: 2.0, color: AppColor.secondaryColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                            width: 3.0, color: AppColor.secondaryColor)),
+                    hintText: widget.name,
                     hintStyle: TextStyleAlFifa.normalText,
-                  errorText: widget.errorText,
-                ),
+                    errorText: widget.errorText,
+                    errorMaxLines: 2),
 
                 // decoration: InputDecoration(
                 //     errorBorder: InputBorder.none,
