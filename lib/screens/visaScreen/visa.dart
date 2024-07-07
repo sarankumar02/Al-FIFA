@@ -1,5 +1,5 @@
 import 'package:al_fifa/bloc/visa_bloc.dart';
-import 'package:al_fifa/screens/payment/paymentScreen.dart';
+import 'package:al_fifa/screens/payment/paymentModeScreen.dart';
 import 'package:al_fifa/screens/travelInformation/travelInformation.dart';
 import 'package:al_fifa/screens/visaScreen/visaRequest.dart';
 import 'package:al_fifa/screens/visaScreen/visaScreenOne.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class Visa extends StatefulWidget {
   final bool backButton;
-  const Visa({Key? key, this.backButton=true}) : super(key: key);
+  const Visa({Key? key, this.backButton = true}) : super(key: key);
 
   @override
   State<Visa> createState() => _VisaState();
@@ -54,7 +54,7 @@ class _VisaState extends State<Visa> {
         visaBloc: visaBloc,
         pageController: _pageController,
       ),
-      PaymentScreen(
+      PaymentModeScreen(
         visaBloc: visaBloc,
         pageController: _pageController,
       )

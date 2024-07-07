@@ -10,6 +10,7 @@ import 'package:al_fifa/models/Visa/visa_type_model.dart';
 import 'package:al_fifa/models/country_model.dart';
 import 'package:al_fifa/repository/visa_repo.dart';
 import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
+import 'package:al_fifa/screens/payment/payment_screen.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -369,7 +370,6 @@ class VisaBloc {
     };
     print(body);
 
-
     context.loaderOverlay.show(widget: customLoader());
 
     var response = await _visaRepo.visaSubmit(body: body);
@@ -381,14 +381,20 @@ class VisaBloc {
     if (response.visaSubmitModel!.successMsg == 1) {
       // ignore: use_build_context_synchronously
       // Navigator.pushReplacementNamed(context, passportThankyou);
-       Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) {
-          return  PassportThankyou(
-            title: "Visa",
-            message: response.visaSubmitModel!.message.toString(),
-          );
-        },
-      ));
+      // here to call webview and listen for url changes
+
+      // Navigator.pushReplacement(context, MaterialPageRoute(
+      //   builder: (context) {
+      //     return PassportThankyou(
+      //       title: "Visa",
+      //       message: response.visaSubmitModel!.message.toString(),
+      //     );
+      //   },
+      // ));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PaymentPage(
+              visaId: response.visaSubmitModel!.visaId.toString(),
+              paymentToken: response.visaSubmitModel!.paymentToken)));
     }
   }
 }
