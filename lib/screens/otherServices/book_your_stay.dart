@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 class BookYourStay extends StatelessWidget {
   final OtherServicesBloc otherServicesBloc;
   BookYourStay({super.key, required this.otherServicesBloc});
-  TextEditingController checkInController = TextEditingController();
-  TextEditingController checkOutController = TextEditingController();
+  final TextEditingController checkInController = TextEditingController();
+  final TextEditingController checkOutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +61,7 @@ class BookYourStay extends StatelessWidget {
 
                         otherServicesBloc.changeSelectedCheckIn(formattedDate);
                         checkOutController.clear();
-                        otherServicesBloc
-                            .changeSelectedCheckOut(null);
+                        otherServicesBloc.changeSelectedCheckOut(null);
                       }
                     },
                     controller: checkInController,
@@ -141,7 +140,7 @@ class BookYourStay extends StatelessWidget {
             stream: otherServicesBloc.mobileNumber,
             builder: (context, valueMOFA) {
               return CustomTextField(
-                  keyboardTypeNumber: true,
+                keyboardTypeNumber: true,
                 name: "Mobile number",
                 errorText: (valueMOFA.error.toString() == 'null')
                     ? null

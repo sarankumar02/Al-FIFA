@@ -1,13 +1,9 @@
 import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/screens/homePage.dart';
 import 'package:al_fifa/screens/myRequest/myRequest.dart';
-
-import 'package:al_fifa/screens/screenOne.dart';
 import 'package:al_fifa/screens/visaScreen/visa.dart';
-import 'package:al_fifa/screens/visaScreen/visaScreenOne.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {

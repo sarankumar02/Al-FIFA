@@ -11,9 +11,7 @@ import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:search_choices/search_choices.dart';
 // import 'package:search_choices/search_choices.dart';
 
@@ -52,7 +50,6 @@ class _VisaScreenTwoState extends State<VisaScreenTwo> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async {
         widget.pageController.animateToPage(0,

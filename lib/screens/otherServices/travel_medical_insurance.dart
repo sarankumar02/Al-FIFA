@@ -1,8 +1,6 @@
 import 'package:al_fifa/Widgets/custom_date_picker.dart';
 import 'package:al_fifa/Widgets/custom_textfield.dart';
-import 'package:al_fifa/Widgets/fontstyle.dart';
 import 'package:al_fifa/bloc/other_services.dart';
-import 'package:al_fifa/screens/otherServices/other_services.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,7 @@ import 'package:intl/intl.dart';
 class TravelMedicalInsurance extends StatelessWidget {
   final OtherServicesBloc otherServicesBloc;
   TravelMedicalInsurance({super.key, required this.otherServicesBloc});
-  TextEditingController dobController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

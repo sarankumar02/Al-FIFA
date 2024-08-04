@@ -6,14 +6,13 @@ import 'package:al_fifa/models/country_model.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
+import 'package:search_choices/search_choices.dart';
 // import 'package:search_choices/search_choices.dart';
 
 class Passport extends StatefulWidget {
@@ -152,8 +151,8 @@ class _PassportState extends State<Passport> {
                             child: StreamBuilder(
                                 stream: passportBloc.quantity,
                                 builder: (context, AsyncSnapshot snapshot1) {
-                                  return Container();
-                                  /* SearchChoices.single(
+                                  return 
+                                   SearchChoices.single(
                                     padding: const EdgeInsets.only(
                                         top: 05, left: 10),
                                     underline: const SizedBox(),
@@ -195,7 +194,7 @@ class _PassportState extends State<Passport> {
                                     },
                                     isExpanded: true,
                                   );
-                            */
+                            
                                 }),
                           ),
                         ],
@@ -236,8 +235,8 @@ class _PassportState extends State<Passport> {
                                         stream:
                                             passportBloc.selectedNationality,
                                         builder: (context, snapshot2) {
-                                          return Container();
-                                          /*  SearchChoices.single(
+                                          return
+                                            SearchChoices.single(
                                             padding: const EdgeInsets.only(
                                                 top: 05, left: 10),
                                             underline: const SizedBox(),
@@ -309,7 +308,7 @@ class _PassportState extends State<Passport> {
                                             },
                                             isExpanded: true,
                                           );
-                                       */
+                                       
                                         });
                                   }),
                             ),

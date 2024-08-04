@@ -376,8 +376,7 @@ class VisaBloc {
 
     context.loaderOverlay.hide();
     // ignore: use_build_context_synchronously
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response.visaSubmitModel!.message)));
+    
     if (response.visaSubmitModel!.successMsg == 1) {
       // ignore: use_build_context_synchronously
       // Navigator.pushReplacementNamed(context, passportThankyou);
@@ -395,6 +394,9 @@ class VisaBloc {
           builder: (context) => PaymentPage(
               visaId: response.visaSubmitModel!.visaId.toString(),
               paymentToken: response.visaSubmitModel!.paymentToken)));
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response.visaSubmitModel!.message)));
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:al_fifa/bloc/visa_bloc.dart';
-import 'package:al_fifa/models/Visa/country_model.dart';
 import 'package:al_fifa/models/Visa/visa_requirement_model.dart';
 import 'package:al_fifa/models/Visa/visa_type_model.dart';
 import 'package:al_fifa/models/country_model.dart';
@@ -35,7 +34,6 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Container(
       child: SingleChildScrollView(
           child: StreamBuilder<VisaRequirementModelResponse>(
@@ -223,7 +221,7 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                       ],
                     ),
                   );
-                  ;
+              
                 }
                 return Container();
               })),

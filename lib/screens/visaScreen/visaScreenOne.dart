@@ -6,8 +6,6 @@ import 'package:al_fifa/utils/customButton.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:search_choices/search_choices.dart';
 // import 'package:search_choices/search_choices.dart';
 
