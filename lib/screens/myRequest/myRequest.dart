@@ -34,7 +34,7 @@ class _MyRequestScreenState extends State<MyRequestScreen>
               height: 20,
             ),
             // give the tab bar a height [can change hheight to preferred height]
-            CustomAppBar(context, "My Request"),
+            CustomAppBar(context, "My Request", backButton: false),
             const SizedBox(
               height: 20,
             ),
@@ -82,7 +82,7 @@ class _MyRequestScreenState extends State<MyRequestScreen>
                     child: Text(
                       'In Progress',
                       style: TextStyle(
-                         fontFamily: "Tajawal-Regular",
+                        fontFamily: "Tajawal-Regular",
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -93,7 +93,8 @@ class _MyRequestScreenState extends State<MyRequestScreen>
                   Center(
                     child: Text(
                       'Completed',
-                      style: TextStyle( fontFamily: "Tajawal-Regular",
+                      style: TextStyle(
+                        fontFamily: "Tajawal-Regular",
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),

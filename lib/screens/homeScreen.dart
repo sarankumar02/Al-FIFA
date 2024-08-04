@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 2
                           ? AppColor.primaryColor
-                          : AppColor.lightblackColor,
+                          : Colors.transparent,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
                 )
@@ -293,7 +293,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     GestureDetector(
                         onTap: () {
-                      
                           Navigator.pushReplacementNamed(context, aboutUS);
                         },
                         child: ListTile(
