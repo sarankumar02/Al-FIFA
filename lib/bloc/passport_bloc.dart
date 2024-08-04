@@ -110,6 +110,7 @@ class PassportBloc {
   Future passPortSubmit({required BuildContext context}) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+    bool loggedIn=_prefs.getBool("LoggedIn")??false;
     Map? body = {};
     //  print(_selectedNationality.value.traNationalityid);
     body = {
@@ -119,7 +120,7 @@ class PassportBloc {
       "applicant_name": _applicantName.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+      "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 

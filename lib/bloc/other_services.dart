@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:al_fifa/Widgets/custom_loader.dart';
 import 'package:al_fifa/repository/other_services_repo.dart';
 import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
-import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:rxdart/rxdart.dart';
@@ -260,6 +259,8 @@ class OtherServicesBloc {
   Future passPortSubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "services": _services.value["id"],
@@ -268,7 +269,7 @@ class OtherServicesBloc {
       "applicant_name": _applicantName.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
     context.loaderOverlay.show(widget: customLoader());
@@ -295,6 +296,8 @@ class OtherServicesBloc {
   Future travelMeddicalInsuranceSubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "nationality":
@@ -305,7 +308,7 @@ class OtherServicesBloc {
       "applicant_name": _applicantName.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 
@@ -333,6 +336,8 @@ class OtherServicesBloc {
   Future bookYourStaySubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "formtype": "1",
@@ -342,7 +347,7 @@ class OtherServicesBloc {
       "applicant_name": _applicantName.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 
@@ -373,13 +378,15 @@ class OtherServicesBloc {
   Future escortSubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "formtype": "1",
       "applicant_name": _applicantNameEscort.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 
@@ -410,13 +417,15 @@ class OtherServicesBloc {
   Future mOFASubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "formtype": "1",
       "applicant_name": _applicantNameMOFA.value,
       "mobile": _mobileNumber.value,
       "email": _email.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 
@@ -447,6 +456,8 @@ class OtherServicesBloc {
   Future translationSubmit({required BuildContext context}) async {
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     var uid = _prefs.getString("uid");
+           bool loggedIn=_prefs.getBool("LoggedIn")??false;
+
     Map? body = {};
     body = {
       "paper": _paperQuantity.value.toString(),
@@ -455,7 +466,7 @@ class OtherServicesBloc {
       "email": _email.value,
       "content": _content.value,
       "document": _translationUpload.value,
-      "usertype": "guest",
+       "usertype":loggedIn?"logged": "guest",
       "created_by": uid ?? "0"
     };
 
