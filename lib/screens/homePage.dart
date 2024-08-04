@@ -59,81 +59,84 @@ class _HomePageState extends State<HomePage> {
                           AsyncSnapshot<SliderModelResponse> snapshot) {
                         print(snapshot.data);
 
-                        return CarouselSlider(
-                            items: [
-                              ...List.generate(
-                                  !snapshot.hasData
-                                      ? 2
-                                      : snapshot.data != null
-                                          ? snapshot
-                                              .data!.sliderModel!.slider.length
-                                          : 0, (index) {
-                                return Card(
-                                    elevation: 5,
-                                    clipBehavior: Clip.antiAlias,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(40)),
-                                    child: !snapshot.hasData
-                                        ? Container()
-                                        : CachedNetworkImage(
-                                            imageUrl: snapshot
-                                                .data!
-                                                .sliderModel!
-                                                .slider[index]
-                                                .bannerImage,
+                        return snapshot.data == null ||
+                                snapshot.data!.sliderModel==null
+                            ? Container()
+                            : CarouselSlider(
+                                items: [
+                                    ...List.generate(
+                                        !snapshot.hasData
+                                            ? 2
+                                            : snapshot.data != null
+                                                ? snapshot.data!.sliderModel!
+                                                    .slider.length
+                                                : 0, (index) {
+                                      return Card(
+                                          elevation: 5,
+                                          clipBehavior: Clip.antiAlias,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(40)),
+                                          child: !snapshot.hasData
+                                              ? Container()
+                                              : CachedNetworkImage(
+                                                  imageUrl: snapshot
+                                                      .data!
+                                                      .sliderModel!
+                                                      .slider[index]
+                                                      .bannerImage,
 
-                                            width: 300,
-                                            // height: 50,
-                                            fit: BoxFit.fill,
-                                          ));
-                              })
+                                                  width: 300,
+                                                  // height: 50,
+                                                  fit: BoxFit.fill,
+                                                ));
+                                    })
 
-                              // Card(
-                              //     elevation: 5,
-                              //     clipBehavior: Clip.antiAlias,
-                              //     shape: RoundedRectangleBorder(
-                              //         borderRadius: BorderRadius.circular(40)),
-                              //     child: const Image(
-                              //       image: AssetImage("assets/Images/Clip.png"),
-                              //       width: 300,
-                              //       // height: 50,
-                              //       fit: BoxFit.fill,
-                              //     )),
-                              // Card(
-                              //     elevation: 5,
-                              //     clipBehavior: Clip.antiAlias,
-                              //     shape: RoundedRectangleBorder(
-                              //         borderRadius: BorderRadius.circular(40)),
-                              //     child: const Image(
-                              //       image: AssetImage("assets/Images/Clip.png"),
-                              //       width: 300,
-                              //       // height: 50,
-                              //       fit: BoxFit.fill,
-                              //     )),
-                              // Card(
-                              //     elevation: 5,
-                              //     clipBehavior: Clip.antiAlias,
-                              //     shape: RoundedRectangleBorder(
-                              //         borderRadius: BorderRadius.circular(40)),
-                              //     child: const Image(
-                              //       image: AssetImage("assets/Images/Clip.png"),
-                              //       width: 300,
-                              //       // height: 50,
-                              //       fit: BoxFit.fill,
-                              //     )),
-                            ],
-                            options: CarouselOptions(
-                              height: 140.0,
-                              enlargeCenterPage: true,
-                              autoPlay: true,
-                              aspectRatio: 16 / 9,
-                              autoPlayCurve: Curves.fastOutSlowIn,
-                              enableInfiniteScroll: true,
-                              autoPlayAnimationDuration:
-                                  const Duration(seconds: 1),
-                              viewportFraction: 0.8,
-                            ));
+                                    // Card(
+                                    //     elevation: 5,
+                                    //     clipBehavior: Clip.antiAlias,
+                                    //     shape: RoundedRectangleBorder(
+                                    //         borderRadius: BorderRadius.circular(40)),
+                                    //     child: const Image(
+                                    //       image: AssetImage("assets/Images/Clip.png"),
+                                    //       width: 300,
+                                    //       // height: 50,
+                                    //       fit: BoxFit.fill,
+                                    //     )),
+                                    // Card(
+                                    //     elevation: 5,
+                                    //     clipBehavior: Clip.antiAlias,
+                                    //     shape: RoundedRectangleBorder(
+                                    //         borderRadius: BorderRadius.circular(40)),
+                                    //     child: const Image(
+                                    //       image: AssetImage("assets/Images/Clip.png"),
+                                    //       width: 300,
+                                    //       // height: 50,
+                                    //       fit: BoxFit.fill,
+                                    //     )),
+                                    // Card(
+                                    //     elevation: 5,
+                                    //     clipBehavior: Clip.antiAlias,
+                                    //     shape: RoundedRectangleBorder(
+                                    //         borderRadius: BorderRadius.circular(40)),
+                                    //     child: const Image(
+                                    //       image: AssetImage("assets/Images/Clip.png"),
+                                    //       width: 300,
+                                    //       // height: 50,
+                                    //       fit: BoxFit.fill,
+                                    //     )),
+                                  ],
+                                options: CarouselOptions(
+                                  height: 140.0,
+                                  enlargeCenterPage: true,
+                                  autoPlay: true,
+                                  aspectRatio: 16 / 9,
+                                  autoPlayCurve: Curves.fastOutSlowIn,
+                                  enableInfiniteScroll: true,
+                                  autoPlayAnimationDuration:
+                                      const Duration(seconds: 1),
+                                  viewportFraction: 0.8,
+                                ));
                       }),
                 ]),
 

@@ -15,6 +15,7 @@ import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/custom_loader.dart';
 
@@ -318,6 +319,8 @@ class VisaBloc {
   }
 
   Future visasubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "countryId": _selectedCountry.value.countryId,
@@ -366,7 +369,7 @@ class VisaBloc {
       "paymentStatus": "1",
       "payment_type": "paypal",
       "usertype": "guest",
-      "created_by": "0",
+      "created_by": uid ?? "0"
     };
     print(body);
 

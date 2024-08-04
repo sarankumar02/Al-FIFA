@@ -6,6 +6,7 @@ import 'package:al_fifa/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OtherServicesBloc {
   final _otherServices = OtherServicesRepository();
@@ -257,6 +258,8 @@ class OtherServicesBloc {
   }
 
   Future passPortSubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "services": _services.value["id"],
@@ -266,7 +269,7 @@ class OtherServicesBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
     context.loaderOverlay.show(widget: customLoader());
 
@@ -290,6 +293,8 @@ class OtherServicesBloc {
   }
 
   Future travelMeddicalInsuranceSubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "nationality":
@@ -301,7 +306,7 @@ class OtherServicesBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     context.loaderOverlay.show(widget: customLoader());
@@ -326,6 +331,8 @@ class OtherServicesBloc {
   }
 
   Future bookYourStaySubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "formtype": "1",
@@ -336,7 +343,7 @@ class OtherServicesBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     context.loaderOverlay.show(widget: customLoader());
@@ -364,6 +371,8 @@ class OtherServicesBloc {
   }
 
   Future escortSubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "formtype": "1",
@@ -371,7 +380,7 @@ class OtherServicesBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     context.loaderOverlay.show(widget: customLoader());
@@ -399,6 +408,8 @@ class OtherServicesBloc {
   }
 
   Future mOFASubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "formtype": "1",
@@ -406,7 +417,7 @@ class OtherServicesBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     context.loaderOverlay.show(widget: customLoader());
@@ -434,6 +445,8 @@ class OtherServicesBloc {
   }
 
   Future translationSubmit({required BuildContext context}) async {
+     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     body = {
       "paper": _paperQuantity.value.toString(),
@@ -443,7 +456,7 @@ class OtherServicesBloc {
       "content": _content.value,
       "document": _translationUpload.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     context.loaderOverlay.show(widget: customLoader());

@@ -4,6 +4,7 @@ import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 // import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -69,11 +70,11 @@ class _AboutUSState extends State<AboutUS> {
                           SizedBox(
                             height: 20,
                           ),
-                          // HtmlWidget(
-                          //   //to show HTML as widget.
-                          //   snapshot.data!.aboutModel!.aboutus![0].content!,
-                          // ),
-                          // Text("It all started with one small office in Dammam, Saudi Arabia in 1977. The newly established office started to gain good reputation among the booming businesses at that time. The company grew rapidly in term of business size and in number of offices covering most of the kingdom. Because of the quality of our service, with sincerity, responsibility and the integrity with which the jobs were performed, we could get a very strong footing in the field and also fastest growth in a short span of time, even beyond our expectations. This filled in us new vigour and encouragement in spreading our wings in other cities such as Riyadh, Jeddah, Hassa, Jubail, and Abha. AlFifa Services has been dedicated for Business Support Services for the more than 30 years with 14 Offices covering most of Saudi Arabia Alfifa had built an excellent reputation in the market on both fronts customers and governments and embassies. Today, AlFifa is the trusted partner for almost major businesses in the country such Saudi Aramco, SABIC, STC, DOW, Sadara and many others. At the same time, AlFifa is partnering with Saudi Government i.e. Amanah Project and more project will be announced soon. AlFifa is rated among the best Embassy Services Provider from all embassies in Riyadh and Jeddah."),
+                          HtmlWidget(
+                            //to show HTML as widget.
+                            snapshot.data!.aboutModel!.aboutus![0].content!,
+                          ),
+                          Text("It all started with one small office in Dammam, Saudi Arabia in 1977. The newly established office started to gain good reputation among the booming businesses at that time. The company grew rapidly in term of business size and in number of offices covering most of the kingdom. Because of the quality of our service, with sincerity, responsibility and the integrity with which the jobs were performed, we could get a very strong footing in the field and also fastest growth in a short span of time, even beyond our expectations. This filled in us new vigour and encouragement in spreading our wings in other cities such as Riyadh, Jeddah, Hassa, Jubail, and Abha. AlFifa Services has been dedicated for Business Support Services for the more than 30 years with 14 Offices covering most of Saudi Arabia Alfifa had built an excellent reputation in the market on both fronts customers and governments and embassies. Today, AlFifa is the trusted partner for almost major businesses in the country such Saudi Aramco, SABIC, STC, DOW, Sadara and many others. At the same time, AlFifa is partnering with Saudi Government i.e. Amanah Project and more project will be announced soon. AlFifa is rated among the best Embassy Services Provider from all embassies in Riyadh and Jeddah."),
                         ],
                       ),
                     );

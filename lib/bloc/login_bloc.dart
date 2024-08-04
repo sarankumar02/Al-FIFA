@@ -54,6 +54,7 @@ class LoginBloc {
     context.loaderOverlay.hide();
 
     print("res" + response.loginResponse!.message!);
+    print("res" + response.loginResponse!.users.toString());
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(response.loginResponse!.message!)));
     if (response.loginResponse!.success == 1) {
@@ -62,6 +63,7 @@ class LoginBloc {
       Navigator.pushReplacementNamed(context, "/homePage");
       // _prefs.setString("contactid", (response.loginResponse!.contactId!));
       _prefs.setString("userEmailId", (_email.value.trim()));
+      _prefs.setString("uid", (response.loginResponse!.users![0].uid!.trim()));
       _prefs.setBool("LoggedIn", true);
       settingsBloc.changeUserLogin();
     }

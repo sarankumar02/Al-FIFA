@@ -108,6 +108,8 @@ class PassportBloc {
   }
 
   Future passPortSubmit({required BuildContext context}) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var uid = _prefs.getString("uid");
     Map? body = {};
     //  print(_selectedNationality.value.traNationalityid);
     body = {
@@ -118,7 +120,7 @@ class PassportBloc {
       "mobile": _mobileNumber.value,
       "email": _email.value,
       "usertype": "guest",
-      "created_by": "0"
+      "created_by": uid ?? "0"
     };
 
     print(body);
@@ -135,10 +137,10 @@ class PassportBloc {
         SnackBar(content: Text(response.passportSubmitModel!.message!)));
     if (response.passportSubmitModel!.successMsg == 1) {
       // Navigator.pushReplacementNamed(context, passportThankyou);
-       // ignore: use_build_context_synchronously
-       Navigator.pushReplacement(context, MaterialPageRoute(
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
-          return  PassportThankyou(
+          return PassportThankyou(
             title: "PassPort",
             message: response.passportSubmitModel!.message!.toString(),
           );

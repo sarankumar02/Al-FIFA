@@ -1,9 +1,8 @@
-import 'package:al_fifa/Widgets/custom_loader.dart';
 import 'package:al_fifa/models/slider_model.dart';
 import 'package:al_fifa/repository/home_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:rxdart/subjects.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeBloc {
   final _homeRepo = HomeRepository();
@@ -22,5 +21,11 @@ class HomeBloc {
     _sliderResponse.sink.add(response);
 
     return response;
+  }
+
+  getUserId() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var result = _prefs.setString("uid", "0");
+    return result;
   }
 }
