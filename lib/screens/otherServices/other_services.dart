@@ -2,7 +2,7 @@ import 'package:al_fifa/Widgets/custom_loader.dart';
 import 'package:al_fifa/Widgets/custom_textfield.dart';
 import 'package:al_fifa/Widgets/fontstyle.dart';
 import 'package:al_fifa/bloc/other_services.dart';
-import 'package:al_fifa/screens/otherServices/bookYourStay.dart';
+import 'package:al_fifa/screens/otherServices/book_your_stay.dart';
 import 'package:al_fifa/screens/otherServices/escort.dart';
 import 'package:al_fifa/screens/otherServices/international.dart';
 import 'package:al_fifa/screens/otherServices/mofa.dart';
