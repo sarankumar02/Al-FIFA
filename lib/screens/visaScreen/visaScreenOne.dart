@@ -4,11 +4,12 @@ import 'package:al_fifa/models/country_model.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:search_choices/search_choices.dart';
+// import 'package:search_choices/search_choices.dart';
 
 class VisaScreenOne extends StatefulWidget {
   final bool backButtonIcon;
@@ -71,7 +72,9 @@ class _VisaScreenOneState extends State<VisaScreenOne> {
                       return StreamBuilder<Countrylist>(
                           stream: widget.visaBloc.selectedNationality,
                           builder: (context, snapshot2) {
-                            return SearchChoices.single(
+                            return
+                                //Container();
+                                SearchChoices.single(
                               padding: const EdgeInsets.only(top: 05, left: 10),
                               underline: const SizedBox(),
                               displayClearIcon: false,
@@ -103,19 +106,23 @@ class _VisaScreenOneState extends State<VisaScreenOne> {
                                             fontFamily: 'Tajawal-Regular'),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10),
-                                        child: CachedNetworkImage(
-                                          height: 20,
-                                          placeholder: (context, url) {
-                                            return Image.asset(
-                                              "assets/Icons/earth.png",
-                                            );
-                                          },
-                                          imageUrl:
-                                              items.countryimage.toString(),
-                                        ),
-                                      ),
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: Image.network(
+                                            items.countryimage.toString(),
+                                            height: 20,
+                                          )
+                                          // CachedNetworkImage(
+                                          //   height: 20,
+                                          //   placeholder: (context, url) {
+                                          //     return Image.asset(
+                                          //       "assets/Icons/earth.png",
+                                          //     );
+                                          //   },
+                                          //   imageUrl:
+                                          //       items.countryimage.toString(),
+                                          // ),
+                                          ),
                                     ],
                                   ),
                                 );

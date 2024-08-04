@@ -7,7 +7,7 @@ import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+// import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class VisaRequestScreen extends StatefulWidget {
   final VisaBloc visaBloc;
@@ -196,11 +196,11 @@ class _VisaRequestScreenState extends State<VisaRequestScreen> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        HtmlWidget(
-                                          snapshot.data!.visaRequirementModel!
-                                              .requirements![index].descriptions
-                                              .toString(),
-                                        ),
+                                        // HtmlWidget(
+                                        //   snapshot.data!.visaRequirementModel!
+                                        //       .requirements![index].descriptions
+                                        //       .toString(),
+                                        // ),
                                       ],
                                     ),
                                   );

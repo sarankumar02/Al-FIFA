@@ -66,6 +66,7 @@ class FontConstant {
 }
 
 class AppConstants {
+ static const PAYMENT_WEB_BASE_URL="https://web-testing.xyz/";
   // static ThemeData darkTheme = ThemeData(
   //     primarySwatch: Colors.grey,
   //     primaryColor: Colors.black,

@@ -1,6 +1,9 @@
+import 'package:al_fifa/bloc/home_bloc.dart';
 import 'package:al_fifa/bloc/settings_bloc.dart';
+import 'package:al_fifa/models/slider_model.dart';
 import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
 import 'package:al_fifa/utils/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,15 +17,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late SettingsBloc settingsBloc;
+  late HomeBloc homeBloc;
+
   @override
   void initState() {
-    settingsBloc=SettingsBloc();
-     
+    settingsBloc = SettingsBloc();
+
+    homeBloc = Provider.of<HomeBloc>(context, listen: false);
+    homeBloc.getHomeBannerImages(context: context);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -47,65 +54,88 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 ListView(shrinkWrap: true, children: [
-                  CarouselSlider(
-                    items: [
-                      Card(
-                          elevation: 5,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          child: const Image(
-                            image: AssetImage("assets/Images/Clip.png"),
-                            width: 300,
-                            // height: 50,
-                            fit: BoxFit.fill,
-                          )),
-                      Card(
-                          elevation: 5,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          child: const Image(
-                            image: AssetImage("assets/Images/Clip.png"),
-                            width: 300,
-                            // height: 50,
-                            fit: BoxFit.fill,
-                          )),
-                      Card(
-                          elevation: 5,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          child: const Image(
-                            image: AssetImage("assets/Images/Clip.png"),
-                            width: 300,
-                            // height: 50,
-                            fit: BoxFit.fill,
-                          )),
-                      Card(
-                          elevation: 5,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          child: const Image(
-                            image: AssetImage("assets/Images/Clip.png"),
-                            width: 300,
-                            // height: 50,
-                            fit: BoxFit.fill,
-                          )),
-                    ],
-                    options: CarouselOptions(
-                      height: 140.0,
-                      enlargeCenterPage: true,
-                      autoPlay: true,
-                      aspectRatio: 16 / 9,
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enableInfiniteScroll: true,
-                      autoPlayAnimationDuration:
-                          const Duration(seconds: 1),
-                      viewportFraction: 0.8,
-                    ),
-                  ),
+                  StreamBuilder(
+                      stream: homeBloc.sliderResponse,
+                      builder: (context,
+                          AsyncSnapshot<SliderModelResponse> snapshot) {
+                        print(snapshot.data);
+
+                        return CarouselSlider(
+                            items: [
+                              ...List.generate(
+                                  !snapshot.hasData
+                                      ? 2
+                                      : snapshot.data != null
+                                          ? snapshot
+                                              .data!.sliderModel!.slider.length
+                                          : 0, (index) {
+                                return Card(
+                                    elevation: 5,
+                                    clipBehavior: Clip.antiAlias,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    child: !snapshot.hasData
+                                        ? Container()
+                                        : CachedNetworkImage(
+                                            imageUrl: snapshot
+                                                .data!
+                                                .sliderModel!
+                                                .slider[index]
+                                                .bannerImage,
+
+                                            width: 300,
+                                            // height: 50,
+                                            fit: BoxFit.fill,
+                                          ));
+                              })
+
+                              // Card(
+                              //     elevation: 5,
+                              //     clipBehavior: Clip.antiAlias,
+                              //     shape: RoundedRectangleBorder(
+                              //         borderRadius: BorderRadius.circular(40)),
+                              //     child: const Image(
+                              //       image: AssetImage("assets/Images/Clip.png"),
+                              //       width: 300,
+                              //       // height: 50,
+                              //       fit: BoxFit.fill,
+                              //     )),
+                              // Card(
+                              //     elevation: 5,
+                              //     clipBehavior: Clip.antiAlias,
+                              //     shape: RoundedRectangleBorder(
+                              //         borderRadius: BorderRadius.circular(40)),
+                              //     child: const Image(
+                              //       image: AssetImage("assets/Images/Clip.png"),
+                              //       width: 300,
+                              //       // height: 50,
+                              //       fit: BoxFit.fill,
+                              //     )),
+                              // Card(
+                              //     elevation: 5,
+                              //     clipBehavior: Clip.antiAlias,
+                              //     shape: RoundedRectangleBorder(
+                              //         borderRadius: BorderRadius.circular(40)),
+                              //     child: const Image(
+                              //       image: AssetImage("assets/Images/Clip.png"),
+                              //       width: 300,
+                              //       // height: 50,
+                              //       fit: BoxFit.fill,
+                              //     )),
+                            ],
+                            options: CarouselOptions(
+                              height: 140.0,
+                              enlargeCenterPage: true,
+                              autoPlay: true,
+                              aspectRatio: 16 / 9,
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enableInfiniteScroll: true,
+                              autoPlayAnimationDuration:
+                                  const Duration(seconds: 1),
+                              viewportFraction: 0.8,
+                            ));
+                      }),
                 ]),
 
                 // Container(
@@ -217,36 +247,35 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     StreamBuilder<bool>(
-                      stream: settingsBloc.userLogin,
-                      builder: (context, snapshot) {
-                        return GestureDetector(
-                          onTap: () {
-                            // settingsBloc.changeUserLogin();
-                            print(snapshot.data);
-                            // Navigator.pushReplacement(context, MaterialPageRoute(
-                            //   builder: (context) {
-                            //     return const PassportThankyou(title: "mff",message: "dmm",);
-                            //   },
-                            // ));
-                          },
-                          child: Column(
-                            children: const [
-                              Image(
-                                image: AssetImage(
-                                    "assets/illustrations/travel packages.png"),
-                                width: 100,
-                              ),
-                              Text(
-                                "Packages Stay &\nTravel",
-                                style: TextStyle(
-                                    fontFamily: "Tajawal-Bold",
-                                    color: AppColor.lightblackColor),
-                              )
-                            ],
-                          ),
-                        );
-                      }
-                    )
+                        stream: settingsBloc.userLogin,
+                        builder: (context, snapshot) {
+                          return GestureDetector(
+                            onTap: () {
+                              // settingsBloc.changeUserLogin();
+                              print(snapshot.data);
+                              // Navigator.pushReplacement(context, MaterialPageRoute(
+                              //   builder: (context) {
+                              //     return const PassportThankyou(title: "mff",message: "dmm",);
+                              //   },
+                              // ));
+                            },
+                            child: Column(
+                              children: const [
+                                Image(
+                                  image: AssetImage(
+                                      "assets/illustrations/travel packages.png"),
+                                  width: 100,
+                                ),
+                                Text(
+                                  "Packages Stay &\nTravel",
+                                  style: TextStyle(
+                                      fontFamily: "Tajawal-Bold",
+                                      color: AppColor.lightblackColor),
+                                )
+                              ],
+                            ),
+                          );
+                        })
                   ],
                 ),
                 const SizedBox(

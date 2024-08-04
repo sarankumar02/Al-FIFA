@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:al_fifa/app_localization.dart';
 import 'package:al_fifa/bloc/auth_bloc.dart';
+import 'package:al_fifa/bloc/home_bloc.dart';
 import 'package:al_fifa/bloc/login_bloc.dart';
 import 'package:al_fifa/bloc/other_services.dart';
 import 'package:al_fifa/bloc/passport_bloc.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         create: (_) => SettingsBloc(),
       ),
       Provider<AuthBloc>(create: (_) => AuthBloc()),
+      Provider<HomeBloc>(create: (_) => HomeBloc()),
       Provider<LoginBloc>(create: (_) => LoginBloc()),
       Provider<UserDetailsBloc>(create: (_) => UserDetailsBloc()),
       Provider<ResetPassswordBloc>(create: (_) => ResetPassswordBloc()),
@@ -60,12 +62,9 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   late SettingsBloc settingsBloc;
 
- 
-
   @override
   Widget build(BuildContext context) {
-
-    settingsBloc=Provider.of<SettingsBloc>(context);
+    settingsBloc = Provider.of<SettingsBloc>(context);
     return StreamBuilder(
         stream: settingsBloc.language,
         builder: (context, AsyncSnapshot snapshot) {

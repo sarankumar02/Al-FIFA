@@ -7,7 +7,7 @@ import 'package:al_fifa/utils/constants.dart';
 import 'package:al_fifa/utils/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:search_choices/search_choices.dart';
+// import 'package:search_choices/search_choices.dart';
 
 class TravelMedicalInsurance extends StatelessWidget {
   final OtherServicesBloc otherServicesBloc;
@@ -32,7 +32,8 @@ class TravelMedicalInsurance extends StatelessWidget {
             child: StreamBuilder(
                 stream: otherServicesBloc.selectedNationality,
                 builder: (context, AsyncSnapshot snapshot1) {
-                  return SearchChoices.single(
+                  return Container();
+                  /*     SearchChoices.single(
                     padding: const EdgeInsets.only(top: 05, left: 10),
                     underline: const SizedBox(),
                     displayClearIcon: false,
@@ -64,6 +65,7 @@ class TravelMedicalInsurance extends StatelessWidget {
                     },
                     isExpanded: true,
                   );
+            */
                 })),
         const SizedBox(
           height: 20,
@@ -196,7 +198,7 @@ class TravelMedicalInsurance extends StatelessWidget {
             builder: (context, valueMOFA) {
               return CustomTextField(
                 name: "Mobile number",
-                  keyboardTypeNumber: true,
+                keyboardTypeNumber: true,
                 errorText: (valueMOFA.error.toString() == 'null')
                     ? null
                     : valueMOFA.error.toString(),
@@ -251,15 +253,16 @@ class TravelMedicalInsurance extends StatelessWidget {
                                           content: Text(AppConstants
                                               .pleaseFillAllFields)));
                                 } else {
-                            
-                                  if (snapshot1.data==false &&
-                                      snapshot2.data==false) {
+                                  if (snapshot1.data == false &&
+                                      snapshot2.data == false) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                             content: Text(AppConstants
                                                 .pleaseFillAllFields)));
                                   } else {
-                                       otherServicesBloc.travelMeddicalInsuranceSubmit(context: context);
+                                    otherServicesBloc
+                                        .travelMeddicalInsuranceSubmit(
+                                            context: context);
                                   }
                                 }
                               },

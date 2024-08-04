@@ -10,7 +10,7 @@ import 'package:al_fifa/screens/myRequest/myRequest.dart';
 import 'package:al_fifa/screens/otherServices/other_services.dart';
 import 'package:al_fifa/screens/passport%20and%20releated%20services/passport.dart';
 import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
-import 'package:al_fifa/screens/payment/paymentScreen.dart';
+import 'package:al_fifa/screens/payment/paymentModeScreen.dart';
 import 'package:al_fifa/screens/registerScreen.dart';
 import 'package:al_fifa/screens/reset_password.dart';
 import 'package:al_fifa/screens/splashscreen.dart';
@@ -58,16 +58,11 @@ class FifaRouter {
         return MaterialPageRoute(builder: (_) => const OtherServices());
 
       default:
-        return  MaterialPageRoute(
+        return MaterialPageRoute(
             builder: (_) => Scaffold(
-              body: Center(
-                  child: Text('No route defined for ${settings.name}')),
-            )
-        );
+                  body: Center(
+                      child: Text('No route defined for ${settings.name}')),
+                ));
     }
-
-
-
-
   }
 }

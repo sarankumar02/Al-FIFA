@@ -10,17 +10,21 @@ class VisaRepository {
   Future<VisaCountryModelResponse> getCountry() async {
     return await _visaApiProvider.getCountry();
   }
+
   Future<VisaTypeModelResponse> getVisaType({required Map body}) async {
     return await _visaApiProvider.getVisaType(body: body);
   }
+
   Future<VisaPlaceModelResponse> getVisaplace({required Map body}) async {
     return await _visaApiProvider.getVisaplace(body: body);
   }
-  Future<VisaRequirementModelResponse> getVisaRequirement({required Map body}) async {
+
+  Future<VisaRequirementModelResponse> getVisaRequirement(
+      {required Map body}) async {
     return await _visaApiProvider.getVisaRequirement(body: body);
   }
+
   Future<VisaSubmitModelResponse> visaSubmit({required Map body}) async {
     return await _visaApiProvider.visaSubmit(body: body);
   }
- 
 }

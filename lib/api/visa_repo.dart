@@ -6,17 +6,15 @@ import 'package:al_fifa/models/Visa/visa_submit_model.dart';
 import 'package:al_fifa/models/Visa/visa_type_model.dart';
 import 'package:al_fifa/models/country_model.dart';
 import 'package:al_fifa/models/passport_submit.dart';
-import 'package:al_fifa/screens/passport%20and%20releated%20services/passport.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 class VisaApiProvider {
- 
-
   Future<VisaCountryModelResponse> getCountry() async {
     try {
-      String url = AppConstants.BASE_URL + "visa_requirement_country_dropdown.php";
-     
+      String url =
+          AppConstants.BASE_URL + "visa_requirement_country_dropdown.php";
+
       final response = await http.get(
         Uri.parse(url),
         headers: {
@@ -44,16 +42,15 @@ class VisaApiProvider {
       return VisaCountryModelResponse.withError(errorMessage: e.toString());
     }
   }
- Future<VisaTypeModelResponse> getVisaType({required Map body}) async {
+
+  Future<VisaTypeModelResponse> getVisaType({required Map body}) async {
     try {
       String url = "${AppConstants.BASE_URL}visatype_dropdown.php";
-  
-      final response = await http.post(Uri.parse(url),
-       
-          body: jsonEncode(body));
-             print("body $body");
+
+      final response = await http.post(Uri.parse(url), body: jsonEncode(body));
+      print("body $body");
       // print(response.);
-    
+
       var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
@@ -69,16 +66,15 @@ class VisaApiProvider {
       return VisaTypeModelResponse.withError(errorMessage: e.toString());
     }
   }
- Future<VisaPlaceModelResponse> getVisaplace({required Map body}) async {
+
+  Future<VisaPlaceModelResponse> getVisaplace({required Map body}) async {
     try {
       String url = "${AppConstants.BASE_URL}visa_place_dropdown.php";
-  
-      final response = await http.post(Uri.parse(url),
-       
-          body: jsonEncode(body));
-             print("body $body");
+
+      final response = await http.post(Uri.parse(url), body: jsonEncode(body));
+      print("body $body");
       // print(response.);
-    
+
       var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
@@ -93,16 +89,16 @@ class VisaApiProvider {
       return VisaPlaceModelResponse.withError(errorMessage: e.toString());
     }
   }
- Future<VisaRequirementModelResponse> getVisaRequirement({required Map body}) async {
+
+  Future<VisaRequirementModelResponse> getVisaRequirement(
+      {required Map body}) async {
     try {
       String url = "${AppConstants.BASE_URL}visa_requirements.php";
-  
-      final response = await http.post(Uri.parse(url),
-       
-          body: jsonEncode(body));
-             print("body $body");
+
+      final response = await http.post(Uri.parse(url), body: jsonEncode(body));
+      print("body $body");
       // print(response.);
-    
+
       var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
@@ -117,11 +113,11 @@ class VisaApiProvider {
       return VisaRequirementModelResponse.withError(errorMessage: e.toString());
     }
   }
-   Future visaSubmit({required Map body}) async {
 
-
+  Future visaSubmit({required Map body}) async {
     try {
-      String url = "${AppConstants.BASE_URL}addform_visasubmission.php";
+      String url =
+          "${AppConstants.PAYMENT_WEB_BASE_URL}/api/addform_visasubmission.php";
       var request = http.MultipartRequest('POST', Uri.parse(url))
         ..fields['countryId'] = body["countryId"]
         ..fields['visaType'] = body["visaType"]
@@ -154,6 +150,9 @@ class VisaApiProvider {
           'photo',
           body["photo"],
         ));
+      print("url---${url}");
+      print("body---${request.fields}");
+      print("request files--${request.files}");
       var response = await request.send();
       dynamic responseBody = await response.stream
           .transform(utf8.decoder)
@@ -166,16 +165,16 @@ class VisaApiProvider {
         AppConstants.logger("innner", responseBody.toString());
         return VisaSubmitModelResponse.fromJson(data: responseBody);
       } else if (response.statusCode == 200 &&
-          responseBody.containsKey("success") &&
-          responseBody["success"] != 1) {
+          responseBody.containsKey("success_msg") &&
+          responseBody["success_msg"] != 1) {
         return VisaSubmitModelResponse.fromJson(data: responseBody);
       }
       AppConstants.logger("response.reasonPhrase", response.reasonPhrase);
-      return VisaSubmitModelResponse.withError(errorMessage: response.reasonPhrase);
+      return VisaSubmitModelResponse.withError(
+          errorMessage: response.reasonPhrase);
     } catch (e) {
       print(e);
       return VisaSubmitModelResponse.withError(errorMessage: e.toString());
     }
   }
-  
 }
