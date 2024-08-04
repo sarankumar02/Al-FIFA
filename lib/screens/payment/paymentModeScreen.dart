@@ -84,6 +84,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
             value: this.payPalvalue,
             onChanged: (bool? value) {
               setState(() {
+                this.payTabvalue = false;
                 this.payPalvalue = value!;
               });
             },
@@ -111,6 +112,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
             value: this.payTabvalue,
             onChanged: (bool? value) {
               setState(() {
+                this.payPalvalue = false;
                 this.payTabvalue = value!;
               });
             },

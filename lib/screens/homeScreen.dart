@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: pageIndex == 2
                           ? AppColor.primaryColor
-                          : AppColor.lightblackColor,
+                          : null,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
                 )
