@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:al_fifa/bloc/settings_bloc.dart';
-import 'package:al_fifa/main.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

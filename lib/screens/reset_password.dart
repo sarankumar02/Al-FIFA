@@ -1,15 +1,8 @@
-import 'package:al_fifa/bloc/forgot_bloc.dart';
-import 'package:al_fifa/bloc/login_bloc.dart';
 import 'package:al_fifa/bloc/reset_bloc.dart';
 import 'package:al_fifa/utils/constants.dart';
-import 'package:al_fifa/utils/customWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:provider/provider.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);

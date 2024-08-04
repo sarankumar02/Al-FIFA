@@ -338,7 +338,7 @@ class AppConstants {
   static const YYYMMDDFormat = "yyy-MM-dd";
 
 
-  static const BASE_URL = "https://alfifaportal.urbansoft.co.uk/api/";
+  static const BASE_URL = "https://web-testing.xyz/api/";
   static const pleaseFillAllFields = "Please fill all the fields";
   static const pleaseCheckInternet = "Please check your internet connection";
 

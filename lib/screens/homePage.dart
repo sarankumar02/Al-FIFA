@@ -1,7 +1,6 @@
 import 'package:al_fifa/bloc/home_bloc.dart';
 import 'package:al_fifa/bloc/settings_bloc.dart';
 import 'package:al_fifa/models/slider_model.dart';
-import 'package:al_fifa/screens/passport%20and%20releated%20services/passport_thankyou.dart';
 import 'package:al_fifa/utils/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
