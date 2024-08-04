@@ -34,45 +34,47 @@ class _MyRequestScreenState extends State<MyRequestScreen>
               height: 20,
             ),
             // give the tab bar a height [can change hheight to preferred height]
-            CustomAppBar(context, "My Request"),
+            CustomAppBar(context, "My Request",backButton: false),
             const SizedBox(
               height: 20,
             ),
             Container(
-              height: 45,
-              decoration: BoxDecoration(
-                color: AppColor.secondaryColor,
+            height: 45,
+            decoration: BoxDecoration(
+              // color: AppColor.secondaryColor,
+              borderRadius: BorderRadius.circular(
+                25.0,
+              ),
+              
+            ),
+            child: TabBar(
+              labelStyle: const TextStyle(fontFamily: "Tajawal-Regular"),
+              controller: _tabController,
+              // give the indicator a decoration (color and border radius)
+              indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(
                   25.0,
                 ),
+                color: AppColor.primaryColor,
               ),
-              child: TabBar(
-                labelStyle: const TextStyle(fontFamily: "Tajawal-Regular"),
-                controller: _tabController,
-                // give the indicator a decoration (color and border radius)
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    25.0,
-                  ),
-                  color: AppColor.primaryColor,
-                ),
-
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.black,
-                tabs: const [
-                  // first tab [you can add an icon using the icon property]
-                  Tab(
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
+              tabs:  [
+                Container(
+                  width: 250,
+                  child: Tab(
                     text: 'In Progress',
                   ),
-
-                  // second tab [you can add an icon using the icon property]
-                  Tab(
+                ),
+                 Container(
+                  width: 250,
+                  child: Tab(
                     text: 'Completed',
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            // tab bar view here
+          ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
